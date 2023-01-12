@@ -34,6 +34,7 @@ app.use("/api/articles", articles);
 app.use("/api/projects", projects);
 app.use("/api/signup", signUp);
 app.use("/api/signin", signIn);
+app.use(express.static('client/build/')); // to load front from here
 
 app.get("/", (req, res) => {
   res.send("Welcome to the blog api");
@@ -42,7 +43,6 @@ app.get("/", (req, res) => {
 const uri = process.env.CONNECTION;
 const port = process.env.PORT || 443;
 
-// app.use(express.static(('build'))); // to load front from here
 // https.createServer(options, app).listen(port);
 
 app.listen(port, () => {
@@ -50,11 +50,7 @@ app.listen(port, () => {
 });
 
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+  .set('strictQuery', false)
+  .connect(uri)
   .then(() => console.log("MongoDB connection established."))
   .catch((error) => console.error("MongoDB connection failed:", error.message));
