@@ -29,7 +29,7 @@ const Root = styled('div')(({ theme }) => ({
 const Banner = (childData) => {
   return (
     <Root className={ classes.bannerContainer }>
-      <img src={ childData.childToParent[0] } className={ classes.banner } alt={ childData.childToParent[1] } />
+      <img src={ childData.childToParent[0] } className={ classes.banner } alt={ childData.childToParent[1] } style={{ width: "100vw"}}/>
     </Root>
   );
 };

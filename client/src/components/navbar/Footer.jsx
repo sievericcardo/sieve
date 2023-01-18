@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, Typography, Link } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 const PREFIX = 'Footer';
 const classes = {
@@ -27,7 +27,7 @@ const Root = styled('div')(({ theme }) => ({
 const Copyright = () => {
   return (
     <Typography variant="h6" color="primary" align="center" >
-      <span style={{ fontSize: "1.2em!important" }}>
+      <span style={{ fontSize: "1.33em", color: "#fff" }}>
         {'Copyright @'}
         <Link color="inherit" href="/">Sieve</Link>{' '}
         { new Date().getFullYear() }
@@ -38,8 +38,6 @@ const Copyright = () => {
 };
 
 const Footer = () => {
-  const theme = useTheme();
-
   return (
     <Root className={ classes.mainContent }>
       {/* <img src="https://tryhackme-badges.s3.amazonaws.com/Xelinion.png" alt="TryHackMe" /> */}

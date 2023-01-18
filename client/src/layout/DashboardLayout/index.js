@@ -11,7 +11,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 
-import Sidebar from '../../components/sidebar/Sidebar';
+import Sidebar from '../../components/dashboard/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/navbar/Footer';
 import Customization from '../Customization';
