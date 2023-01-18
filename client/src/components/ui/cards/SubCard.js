@@ -59,8 +59,8 @@ SubCard.propTypes = {
   darkTitle: PropTypes.bool,
   sx: PropTypes.object,
   contentSX: PropTypes.object,
-  title: PropTypes.oneType([PropTypes.node, PropTypes.string, PropTypes.Object]),
-  secondary: PropTypes.oneType([PropTypes.node, PropTypes.string, PropTypes.Object]),
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
+  secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
 };
 
 SubCard.defaultProps = {

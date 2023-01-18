@@ -24,8 +24,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import SubCard from '../../components/ui/cards/SubCard';
 import AnimateButton from '../../components/ui/extended/AnimateButton';
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
-import { gridSpacing } from 'store/constant';
+import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '../../store/actions';
+import { gridSpacing } from '../../store/constants';
 
 // concat 'px'
 function valueText(value) {

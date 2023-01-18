@@ -22,6 +22,7 @@ const classes = {
 const Root = styled("div")(({ theme }) => ({
   [`&.${classes.root}`]: {
     flexGrow: 1,
+    padding: "0px!important",
   },
   [`&.${classes.linkStyle}`]: {
     color: "#fafafa",
@@ -43,6 +44,7 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const Navbar = () => {
+
   const state = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
 
@@ -60,7 +62,7 @@ const Navbar = () => {
 
   return (
     <Root>
-      <AppBar position="static" color="primary" className='navbar'>
+      <AppBar position="static" color="dark" className='navbar'>
         <Toolbar>
           <img src={logo} className='navLogo' alt="Logo" />
           <Typography variant="h4" className='navRoot'>

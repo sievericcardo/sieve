@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
-import Loadable from '../compnents/ui/Loadable';
+import Loadable from '../components/ui/Loadable';
+import MainLayout from '../layout/MainLayout';
 
 const Home = Loadable(lazy(() => import('../components/pages/Home')));
 const Writeup = Loadable(lazy(() => import('../components/pages/Writeup')));
@@ -9,6 +10,7 @@ const DisplayWriteups = Loadable(lazy(() => import('../components/pages/DisplayW
 
 const MainRoutes = {
   path: '/',
+  element: <MainLayout />,
   children: [
     {
       path: '/',

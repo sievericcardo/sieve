@@ -1,7 +1,8 @@
 import { lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import Loadable from '../compnents/ui/Loadable';
+import Loadable from '../components/ui/Loadable';
+import DashboardLayout from '../layout/DashboardLayout';
 
 const Dashboard = Loadable(lazy(() => import('../components/dashboard/Dashboard')));
 const Chart = Loadable(lazy(() => import('../components/dashboard/Chart')));
@@ -12,6 +13,7 @@ const ManageWriteups = Loadable(lazy(() => import('../components/dashboard/write
 
 const DashboardRoutes = {
   path: '/cms-dashboard',
+  element: <DashboardLayout />,
   children: [
     {
       path: '/',

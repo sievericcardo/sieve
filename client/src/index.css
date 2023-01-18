@@ -74,6 +74,7 @@ code {
 
 .navbar {
   z-index: 9999;
+  padding: 0!important;
 }
 
 /*================= HOME ==================*/
