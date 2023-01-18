@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
 
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -12,16 +12,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import theme from './components/theme';
-import { ThemeProvider } from '@material-ui/core/styles';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 import rootReducer from './store/reducers/rootReducers';
 
 // Creation of the redux store, we need to pass the middleware for the thunk as well
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -29,8 +31,7 @@ ReactDOM.render(
         <App />
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

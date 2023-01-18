@@ -3,20 +3,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Import element from the core
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from '@mui/material';
 
 // Import icons
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import PermMediaIcon from '@material-ui/icons/PermMedia';
-import AccountTree from '@material-ui/icons/AccountTree';
-import DescriptionIcon from '@material-ui/icons/Description';
-
-// Add icons for data in dashboard
-import Book from '@material-ui/icons/Book';
+import {
+  Dashboard as DashboardIcon,
+  Assignment as AssignmentIcon,
+  PermMedia as PermMediaIcon,
+  AccountTree,
+  Description as DescriptionIcon,
+  Book,
+} from '@mui/icons-material';
 
 export const mainListItems = (
   <div>

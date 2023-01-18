@@ -1,9 +1,15 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles({
-  bannerContainer: {
+const PREFIX = 'Banner';
+const classes = {
+  bannerContainer: `${PREFIX}-bannerContainer`,
+  banner: `${PREFIX}-banner`,
+}
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.bannerContainer}`]: {
     width: '100vw',
     height: 'auto',
     position: 'relative',
@@ -13,20 +19,18 @@ const useStyles = makeStyles({
     top: 0,
     zIndex: -1,
   },
-  banner: {
+  [`&.${classes.banner}`]: {
     width: '100vw',
     height: 'auto',
     objectFit: 'cover'
   },
-});
+}));
 
 const Banner = (childData) => {
-  const classes = useStyles();
-
   return (
-    <div className={ classes.bannerContainer }>
+    <Root className={ classes.bannerContainer }>
       <img src={ childData.childToParent[0] } className={ classes.banner } alt={ childData.childToParent[1] } />
-    </div>
+    </Root>
   );
 };
 

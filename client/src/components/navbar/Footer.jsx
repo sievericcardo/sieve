@@ -1,25 +1,19 @@
 import React from 'react';
 
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { Box, Typography, Link } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-import { makeStyles } from '@material-ui/core';
+const PREFIX = 'Footer';
+const classes = {
+  mainContent: `${PREFIX}-mainContent`,
+};
 
-const useStyles = makeStyles({
-  footer: {
-    position: 'relative',
-    width: '100vw',
-    backgroundColor: '#161616',
-    color: '#fff!important',
-    margin: '50px 0 0 0',
-    padding: '0px 20px 30px 0',
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.mainContent}`]: {
+    textAlign: 'center',
+    marginTop: '1.1em',
   },
-  mainContent: {
-    textAlign: "center",
-    marginTop: "1.1em",
-  },
-});
+}));
 
 const Copyright = () => {
   return (
@@ -33,18 +27,16 @@ const Copyright = () => {
 };
 
 const Footer = () => {
-  const classes = useStyles();
-
   return (
-    <div className={ classes.mainContent }>
+    <Root className={ classes.mainContent }>
       {/* <img src="https://tryhackme-badges.s3.amazonaws.com/Xelinion.png" alt="TryHackMe" /> */}
-      <div className={ classes.footer }>
+      <div id='footer'>
         <script src="https://tryhackme.com/badge/632428"></script>
         <Box pt={4}>
           <Copyright />
         </Box>
       </div>
-    </div>
+    </Root>
   );
 }
 

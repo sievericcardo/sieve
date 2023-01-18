@@ -6,21 +6,24 @@ import ReactMarkdown from 'react-markdown';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import { makeStyles } from "@material-ui/styles";
+import { styled } from "@mui/material/styles";
 
 import { url } from '../../api/index';
 
-const useStyles = makeStyles({
-  mainContent: {
+const PREFIX = "Writeup";
+const classes = {
+  mainContent: `${PREFIX}-mainContent`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.mainContent}`]: {
     width: "75vw",
     margin: "auto",
     paddingTop: "3em",
   },
-});
+}));
 
 const  Writeup = () => {
-  const classes = useStyles();
-
   // Get ID from URL
   const { id } = useParams();
   const [writeup, setWriteup] = useState([]);
@@ -37,10 +40,10 @@ const  Writeup = () => {
   }, [id]);
 
   return (
-    <div className={classes.mainContent}>
+    <Root className={classes.mainContent}>
       {/* <ReactMarkdown>{ decodeURIComponent(escape(atob(writeup.body))) }</ReactMarkdown> */}
       <ReactMarkdown>{ decodeURIComponent(escape(writeup.body)) }</ReactMarkdown>
-    </div>
+    </Root>
   );
 };
 

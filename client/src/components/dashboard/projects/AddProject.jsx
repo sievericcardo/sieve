@@ -1,14 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { TextField, Button } from "@material-ui/core";
-import { Send } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { Typography, TextField, Button } from "@mui/material";
+import { Send } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 
 import { addProject, updateProject } from "../../../store/actions/projectActions";
 
-const useStyles = makeStyles({
-  formStyle: {
+const PREFIX = "DashboardAddProject";
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  submitButton: `${PREFIX}-submitButton`,
+};
+
+const Root = styled("form")(({ theme }) => ({
+  [`&.${classes.formStyle}`]: {
     maxWidth: "70vw",
     margin: "0px auto",
     padding: "30px",
@@ -16,15 +22,14 @@ const useStyles = makeStyles({
     boxShadow: "0px 0px 12px -3px #000",
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
-  submitButton: {
+  [`&.${classes.submitButton}`]: {
     marginLeft: "20px",
   },
-});
+}));
 
 const AddProject = ({ project, setProject }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -58,7 +63,7 @@ const AddProject = ({ project, setProject }) => {
 
   return (
     <>
-      <form
+      <Root
         noValidate
         autoComplete="off"
         className={classes.formStyle}
@@ -91,7 +96,7 @@ const AddProject = ({ project, setProject }) => {
         >
           <Send />
         </Button>
-      </form>
+      </Root>
     </>
   );
 };

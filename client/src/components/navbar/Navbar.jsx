@@ -3,73 +3,79 @@ import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles"; // for custom css
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { signOut } from "../../store/actions/authActions";
 
-const useStyles = makeStyles({
-  root: {
+const PREFIX = "Navbar";
+const classes = {
+  root: `${PREFIX}-root`,
+  linkStyle: `${PREFIX}-linkStyle`,
+  logo: `${PREFIX}-logo`,
+  title: `${PREFIX}-title`,
+  navbar: `${PREFIX}-navbar`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.root}`]: {
     flexGrow: 1,
   },
-  linkStyle: {
+  [`&.${classes.linkStyle}`]: {
     color: "#fafafa",
     textDecoration: "none",
     margin: "5px",
     padding: "5px",
   },
-  authButton: {
-    //
+  [`&.${classes.logo}`]: {
+    width: "30px",
+    height: "auto",
+    marginRight: "20px",
   },
-  logo: {
-    width: '30px',
-    marginRight: '20px'
+  [`&.${classes.title}`]: {
+    fontFamily: "WindSong",
   },
-  title: {
-    fontFamily: "WindSong"
+  [`&.${classes.navbar}`]: {
+    zIndex: 9999,
   },
-  navbar: {
-    zIndex: 9999
-  },
-});
+}));
 
 const Navbar = () => {
-  const classes = useStyles();
   const state = useSelector((state) => state);
   const auth = useSelector((state) => state.auth);
 
   console.log(state);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
     // logout
     dispatch(signOut());
 
-    history.push("/signin");
+    navigate("/signin");
   };
 
   return (
-    <div>
-      <AppBar position="static" color="primary" className={ classes.navbar }>
+    <Root>
+      <AppBar position="static" color="primary" className='navbar'>
         <Toolbar>
-          <img src={logo} className={classes.logo} alt="Logo" />
-          <Typography variant="h4" className={classes.root}>
-            <Link className={ classes.linkStyle } to="/">
-              <span className={ classes.title }>Sieve</span>
+          <img src={logo} className='navLogo' alt="Logo" />
+          <Typography variant="h4" className='navRoot'>
+            <Link className='navLinkStyle' to="/">
+              <span className='navTitle'>Sieve</span>
             </Link>
             <Button color="inherit">
-            <Link className={classes.linkStyle} to="/writeups">
+            <Link className='navLinkStyle' to="/writeups">
               Writeups
             </Link>
           </Button>
           </Typography>
           {auth._id ? (
             <>
-              <Typography variant="subtitle2" className={classes.root}>
+              <Typography variant="subtitle2" className='navRoot'>
                 Logged in as {auth.name}
               </Typography>
               <Button color="inherit" onClick={() => handleSignOut()}>
@@ -79,7 +85,7 @@ const Navbar = () => {
           ) : (
             <>
               <Button color="inherit">
-                <Link className={classes.linkStyle} to="/signin">
+                <Link className='navLinkStyle' to="/signin">
                   Sign In
                 </Link>
               </Button>
@@ -87,7 +93,7 @@ const Navbar = () => {
           )}
         </Toolbar>
       </AppBar>
-    </div>
+    </Root>
   );
 };
 

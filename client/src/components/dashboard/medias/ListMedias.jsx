@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Media from "./Media";
 import { getMedias } from "../../../store/actions/mediaActions";
 
-const useStyles = makeStyles({
-  mediaStyle: {
+const PREFIX = "DashboardListMedias";
+const classes = {
+  mediaStyle: `${PREFIX}-mediaStyle`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.mediaStyle}`]: {
     margin: "20px auto",
     padding: "20px",
     borderRadius: "9px",
@@ -17,10 +22,9 @@ const useStyles = makeStyles({
     color: '#000',
     marginTop: '0.2em',
   },
-});
+}));
 
 const ListMedias = ({ setMedia }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const medias = useSelector((state) => state.medias);
 
@@ -39,7 +43,7 @@ const ListMedias = ({ setMedia }) => {
 
   return (
     <>
-      <div className={classes.mediaStyle}>
+      <Root className={classes.mediaStyle}>
         <Typography variant="h5">
           {length > 0 ? "My medias" : "No media yet"}
         </Typography>
@@ -53,7 +57,7 @@ const ListMedias = ({ setMedia }) => {
               />
             );
           })}
-      </div>
+      </Root>
     </>
   );
 };

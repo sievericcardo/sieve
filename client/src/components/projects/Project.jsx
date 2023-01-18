@@ -1,27 +1,28 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@mui/material';
+import { AllInclusive } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
-import { AllInclusive } from '@material-ui/icons';
+const PREFIX = 'Project';
+const classes = {
+  projects: `${PREFIX}-projects`,
+};
 
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-  projects: {
-    color: '#000'
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.projects}`]: {
+    color: '#000',
   }
-});
+}));
 
 const  Project = ({ project, setProject }) => {
-  const classes = useStyles();
-
   return (
-    <div className={ classes.projects }>
+    <Root className={ classes.projects }>
       <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
       <Typography variant="body2">
         {project.body}
       </Typography>
-    </div>
+    </Root>
   );
 }
 

@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { signIn } from "../../store/actions/authActions";
 
-import { Typography, TextField, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import {
+  Typography,
+  TextField,
+  Button
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const useStyles = makeStyles({
-  formStyle: {
+const PREFIX = "Login";
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  spacing: `${PREFIX}-spacing`,
+  formTitle: `${PREFIX}-formTitle`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.formStyle}`]: {
     margin: "0px auto",
     padding: "30px",
     borderRadius: "9px",
@@ -17,16 +28,16 @@ const useStyles = makeStyles({
     backgroundColor: "#c6c6c6",
     color: "#000",
   },
-  spacing: {
+  [`&.${classes.spacing}`]: {
     marginTop: "20px",
   },
-  formTitle: {
-      color: "#000"
-  }
-});
+  [`&.${classes.formTitle}`]: {
+    color: "#000",
+  },
+}));
+
 
 const SignIn = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
@@ -47,11 +58,11 @@ const SignIn = () => {
   };
 
   if (auth._id) {
-    return <Redirect to="/cms-dashboard" />;
+    return <Navigate to="/cms-dashboard" />;
   }
 
   return (
-    <div className="formContent">
+    <Root className="formContent">
       <form
         className={classes.formStyle}
         noValidate
@@ -87,7 +98,7 @@ const SignIn = () => {
           Sign In
         </Button>
       </form>
-    </div>
+    </Root>
   );
 };
 

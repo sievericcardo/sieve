@@ -1,16 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { Typography, Button, ButtonGroup } from "@material-ui/core";
-import { Create, Delete, CheckCircle } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { Typography, Button, ButtonGroup } from '@mui/material';
+import { Create, Delete, CheckCircle } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
 import moment from "moment";
 
 import { checkWriteup, deleteWriteup } from "../../../store/actions/writeupActions";
 
-const useStyles = makeStyles({
-  writeupStyles: {
+const PREFIX = "DashboardWriteup";
+const classes = {
+  writeupStyles: `${PREFIX}-writeupStyles`,
+  greyStyle: `${PREFIX}-greyStyle`,
+  isComplete: `${PREFIX}-isComplete`,
+  checked: `${PREFIX}-checked`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.writeupStyles}`]: {
     margin: "20px auto",
     padding: "20px",
     border: "2px solid #bdbdbd",
@@ -18,21 +26,11 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     textAlign: "left",
-    color: "#000"
+    color: "#000",
   },
-  greyStyle: {
-    color: "#010!important",
-  },
-  isComplete: {
-    color: "green",
-  },
-  checked: {
-    textDecoration: "line-through",
-  },
-});
+}));
 
 const Writeup = ({ writeup, setWriteup, writeups }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleUpdateClick = (id) => {
@@ -60,13 +58,13 @@ const Writeup = ({ writeup, setWriteup, writeups }) => {
 
   return (
     <>
-      <div className={classes.writeupStyles}>
+      <Root className={classes.writeupStyles}>
         <div>
           <Typography variant="subtitle1">{writeup.name}</Typography>
-          <Typography variant="body2" className={classes.greyStyle}>
+          <Typography variant="body2" className='greyStyle'>
             Text: {writeup.platform}
           </Typography>
-          <Typography variant="body2" className={classes.greyStyle}>
+          <Typography variant="body2" className='greyStyle'>
             Added: {moment(writeup.date).fromNow()}
           </Typography>
         </div>
@@ -83,7 +81,7 @@ const Writeup = ({ writeup, setWriteup, writeups }) => {
             </Button>
           </ButtonGroup>
         </div>
-      </div>
+      </Root>
     </>
   );
 };

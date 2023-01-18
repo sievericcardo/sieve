@@ -1,16 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { Typography, Button, ButtonGroup } from "@material-ui/core";
-import { Create, Delete, CheckCircle } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { Typography, Button, ButtonGroup } from "@mui/material";
+import { Create, Delete, CheckCircle } from "@mui/icons-material";
+import { styled } from "@mui/material/styles";
 
 import moment from "moment";
 
 import { checkArticle, deleteArticle } from "../../../store/actions/articleActions";
 
-const useStyles = makeStyles({
-  articleStyles: {
+const PREFIX = "DashboardArticle";
+const classes = {
+  articleStyles: `${PREFIX}-articleStyles`,
+  greyStyle: `${PREFIX}-greyStyle`,
+  isComplete: `${PREFIX}-isComplete`,
+  checked: `${PREFIX}-checked`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.articleStyles}`]: {
     margin: "20px auto",
     padding: "20px",
     border: "2px solid #bdbdbd",
@@ -18,21 +26,20 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     textAlign: "left",
-    color: "#000"
+    color: "#000",
   },
-  greyStyle: {
+  [`&.${classes.greyStyle}`]: {
     color: "#010!important",
   },
-  isComplete: {
+  [`&.${classes.isComplete}`]: {
     color: "green",
   },
-  checked: {
+  [`&.${classes.checked}`]: {
     textDecoration: "line-through",
   },
-});
+}));
 
 const Article = ({ article, setArticle }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleUpdateClick = () => {
@@ -55,7 +62,7 @@ const Article = ({ article, setArticle }) => {
 
   return (
     <>
-      <div className={classes.articleStyles}>
+      <Root className={classes.articleStyles}>
         <div>
           <Typography variant="h4">{article.name}</Typography>
           <Typography variant="body2" className={classes.greyStyle}>
@@ -78,7 +85,7 @@ const Article = ({ article, setArticle }) => {
             </Button>
           </ButtonGroup>
         </div>
-      </div>
+      </Root>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Authentication
 import SignIn from './components/auth/SignIn';
@@ -25,9 +25,7 @@ import ManageProjects from './components/dashboard/projects/ManageProjects';
 import ManageArticles from './components/dashboard/articles/ManageArticles';
 import ManageWriteups from './components/dashboard/writeups/ManageWriteups';
 
-import Container from '@material-ui/core/Container';
-
-import { makeStyles } from '@material-ui/styles';
+import { Container } from '@mui/material';
 
 import { loadUser } from './store/actions/authActions';
 
@@ -36,39 +34,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
-const useStyles = makeStyles((theme) => ({
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-    width: '80vw',
-    marginTop: '2vw',
-    marginLeft: '15vw',
-    marginRight: '5vw',
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
-  fixedHeight: {
-    height: 240,
-  },
-  contentPage: {
-    width: '100vw!important',
-    maxWidth: '100vw!important',
-    margin: '0!important',
-    padding: '0!impotant',
-  },
-}));
-
-function App() {
-  const classes = useStyles();
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -76,20 +42,20 @@ function App() {
   }, [dispatch]);
 
   const DashboardContainer = ({ match }) => (
-    <div className="container">
+    <div className="content">
       <Dashboard />
       <div>
         <Sidebar />
-        <main className={ classes.content }>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={ classes.container }>
-            <Switch>
-              <Route exact path={match.url} component={Chart} />
-              <Route path={match.url + "/manage-medias"} component={ManageMedias} />
-              <Route path={match.url + "/manage-projects"} component={ManageProjects} />
-              <Route path={match.url + "/manage-articles"} component={ManageArticles} />
-              <Route path={match.url + "/manage-writeups"} component={ManageWriteups} />
-            </Switch>
+        <main className='cont'>
+          <div className='appBarSpacer' />
+          <Container maxWidth="lg" className='container'>
+            <Routes>
+              <Route exact path={match.url} element={Chart} />
+              <Route path={match.url + "/manage-medias"} element={ManageMedias} />
+              <Route path={match.url + "/manage-projects"} element={ManageProjects} />
+              <Route path={match.url + "/manage-articles"} element={ManageArticles} />
+              <Route path={match.url + "/manage-writeups"} element={ManageWriteups} />
+            </Routes>
           </Container>
         </main>
       </div>
@@ -97,17 +63,17 @@ function App() {
   )
 
   const DefaultContainer = () => (
-    <div className="container">
+    <div className="content">
       <Navbar />
-      <Container className={ classes.pageContent } maxWidth="false">
-        <Switch>
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
-          <Route exact path="/writeups" component={DisplayWriteups} />
-          <Route exact path="/writeups/:id" component={Writeup} />
-          <Route path="/" component={Home} />
-          {/* <Route path="/" exact component={Articles} /> */}
-        </Switch>
+      <Container className='page-content' maxWidth="false">
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/writeups" element={<DisplayWriteups />} />
+          <Route path="/writeups/:id" element={<Writeup />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/" exact element={Articles} /> */}
+        </Routes>
       </Container>
       <Footer />
     </div>
@@ -117,8 +83,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <ToastContainer />
-        <Route path="/cms-dashboard" component={DashboardContainer}/>
-        <Route exact path={["/", "/signin", "/writeups", "/writeups/:id"]} component={DefaultContainer}/>
+        <Routes>
+          <Route path="/cms-dashboard/*" element={<DashboardContainer />}/>
+          <Route exact path="/" element={<DefaultContainer />}/>
+          <Route exact path="/signin/*" element={<DefaultContainer />}/>
+          <Route exact path="/signup/*" element={<DefaultContainer />}/>
+          <Route exact path="/writeups" element={<DefaultContainer />}/>
+          <Route exact path="/writeups/:id" element={<DefaultContainer />}/>
+        </Routes>
       </BrowserRouter>
     </div>
   );

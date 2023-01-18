@@ -1,14 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { TextField, MenuItem, Button } from "@material-ui/core";
-import { Send } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { TextField, MenuItem, Button } from '@mui/material';
+import { Send } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
 import { addWriteup, updateWriteup } from "../../../store/actions/writeupActions";
 
-const useStyles = makeStyles({
-  formStyle: {
+const PREFIX = "DashboardAddWriteup";
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  submitButton: `${PREFIX}-submitButton`,
+};
+
+const Root = styled("form")(({ theme }) => ({
+  [`&.${classes.formStyle}`]: {
     maxWidth: "70vw",
     margin: "0px auto",
     padding: "30px",
@@ -16,22 +22,14 @@ const useStyles = makeStyles({
     boxShadow: "0px 0px 12px -3px #000",
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
-  marginBlocks: {
-    marginBottom: "20px",
-  },
-  textArea: {
-    width: "25vw",
-    height: "15vh",
-  },
-  submitButton: {
+  [`&.${classes.submitButton}`]: {
     marginLeft: "20px",
   },
-});
+}));
 
 const AddWriteup = ({ writeup, setWriteup }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const getBase64 = (file) => {
@@ -86,7 +84,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
 
   return (
     <>
-      <form
+      <Root
         noValidate
         autoComplete="off"
         className={classes.formStyle}
@@ -96,7 +94,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
         <div>
           <TextField
             required
-            className={ classes.marginBlocks }
+            className='marginBlocks'
             id="enter-writeup"
             variant="outlined"
             label="Writeup title"
@@ -107,7 +105,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
           />
           <TextField
             required
-            className={ classes.marginBlocks }
+            className='marginBlocks'
             id="enter-writeup"
             variant="outlined"
             label="Writeup description"
@@ -118,7 +116,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
           />
           <TextField
             required
-            className={ classes.marginBlocks }
+            className='marginBlocks'
             id="platform-writeup"
             select
             label="Select platform"
@@ -146,7 +144,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
         <div>
           <TextField 
             required
-            className={ classes.textArea }
+            className='textArea'
             id="writeup-body"
             aria-label="minimum height"
             minRows={1}
@@ -168,7 +166,7 @@ const AddWriteup = ({ writeup, setWriteup }) => {
             <Send />
           </Button>
         </div>
-      </form>
+      </Root>
     </>
   );
 };

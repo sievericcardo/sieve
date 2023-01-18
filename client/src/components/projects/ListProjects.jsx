@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
-import { makeStyles } from '@material-ui/core/styles';
-
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Project from './Project';
 import { getProjects } from '../../store/actions/projectActions';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'ListProjects';
+const classes = {
+  root: `${PREFIX}-root`,
+  paper: `${PREFIX}-paper`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.root}`]: {
     flexGrow: 1,
     marginTop: '0.7em',
   },
-  paper: {
+  [`&.${classes.paper}`]: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -21,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListProjects = ({ project, setProject }) => {
-  const classes = useStyles();
-
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects);
 
@@ -40,7 +43,7 @@ const ListProjects = ({ project, setProject }) => {
   }, [dispatch]); // this is to avoid it making continually rendering
 
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
     {length > 0 ? (
       <Grid container spacing={3}>
         {projects &&
@@ -57,7 +60,7 @@ const ListProjects = ({ project, setProject }) => {
           })}
       </Grid>
     ) : ""}
-    </div>
+    </Root>
   );
 }
 

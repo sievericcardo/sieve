@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import AddArticle from '../articles/AddArticle';
 import ListArticles from '../articles/ListArticles';
@@ -14,7 +14,7 @@ const ManageArticles = () => {
     });
 
     if(!auth._id) {
-        return <Redirect to="/signin" />
+        return <Navigate to="/signin" />
     }
 
     return (

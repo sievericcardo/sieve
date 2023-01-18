@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import AddWriteup from '../writeups/AddWriteup';
 import ListWriteups from '../writeups/ListWriteups';
@@ -15,7 +15,7 @@ const ManageWriteups = () => {
     });
 
     if(!auth._id) {
-        return <Redirect to="/signin" />
+        return <Navigate to="/signin" />
     }
 
     return (

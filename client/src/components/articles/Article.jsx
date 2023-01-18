@@ -1,60 +1,74 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 import clsx from 'clsx';
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  Avatar,
+  IconButton,
+  Typography,
+} from '@mui/material';
+import { red } from '@mui/material/colors';
+import {
+  ExpandMore as ExpandMoreIcon
+} from '@mui/icons-material';
 
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import moment from "moment";
 
 import { url } from '../../api/index';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'Article';
+const classes = {
+  root: `${PREFIX}-root`,
+  media: `${PREFIX}-media`,
+  expand: `${PREFIX}-expand`,
+  expandOpen: `${PREFIX}-expandOpen`,
+  avatar: `${PREFIX}-avatar`,
+  text: `${PREFIX}-text`,
+}
+
+const Root = styled(Card)(({ theme }) => ({
+  [`&.${classes.root}`]: {
     maxWidth: 345,
     color: '#000!important',
     backgroundColor: '#726DA8',
-    margin: '1em'
+    margin: '1em',
   },
-  media: {
+  [`&.${classes.media}`]: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  expand: {
+  [`&.${classes.expand}`]: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
-  expandOpen: {
+  [`&.${classes.expandOpen}`]: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
+  [`&.${classes.avatar}`]: {
     backgroundColor: red[500],
   },
-  text: {
+  [`&.${classes.text}`]: {
     color: '#fff!important',
   },
 }));
 
 const  Article = ({ article, setArticle }) => {
-  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -64,7 +78,7 @@ const  Article = ({ article, setArticle }) => {
   const imageUrl = `${url}/articles/image?path=${article.image}`
 
   return (
-    <Card className={classes.root}>
+    <Root className={classes.root}>
       <CardHeader className={ classes.text }
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -112,7 +126,7 @@ const  Article = ({ article, setArticle }) => {
           <Typography paragraph>{ article.body }</Typography>
         </CardContent>
       </Collapse>
-    </Card>
+    </Root>
   );
 }
 

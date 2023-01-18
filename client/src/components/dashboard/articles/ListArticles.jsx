@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Article from "./Article";
 import { getArticles } from "../../../store/actions/articleActions";
 
-const useStyles = makeStyles({
-  articleStyle: {
+const PREFIX = "DashboardListArticles";
+const classes = {
+  articleStyle: `${PREFIX}-articleStyle`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.articleStyle}`]: {
     margin: "20px auto",
     padding: "20px",
     borderRadius: "9px",
@@ -17,10 +22,9 @@ const useStyles = makeStyles({
     color: '#000',
     marginTop: '0.2em',
   },
-});
+}));
 
 const ListArticles = ({ setArticle }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles);
 
@@ -39,7 +43,7 @@ const ListArticles = ({ setArticle }) => {
 
   return (
     <>
-      <div className={classes.articleStyle}>
+      <Root className={classes.articleStyle}>
         <Typography variant="h5">
           {length > 0 ? "My articles" : "No article yet"}
         </Typography>
@@ -53,7 +57,7 @@ const ListArticles = ({ setArticle }) => {
               />
             );
           })}
-      </div>
+      </Root>
     </>
   );
 };

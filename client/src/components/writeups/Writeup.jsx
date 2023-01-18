@@ -1,17 +1,20 @@
 import React from 'react';
 // import ReactMarkdown from 'react-markdown';
 
-import { makeStyles } from '@material-ui/core/styles';
-
 // import clsx from 'clsx';
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import CardActionArea from '@material-ui/core/CardActionArea';
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
+import { red } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
+
 // import { Button, CardActionArea, CardActions } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
 
 import { Link } from "react-router-dom";
 
@@ -19,61 +22,67 @@ import { Link } from "react-router-dom";
 
 import { url } from '../../api/index';
 
-const useStyles = makeStyles((theme) => ({
-  mainClass: {
-    backgroundColor: "#99ccff",
-    padding: "20px",
-  },
-  cardContent: {
-    padding: "10px",
-  },
-  root: {
+const PREFIX = 'Writeup';
+const classes = {
+  root: `${PREFIX}-root`,
+  media: `${PREFIX}-media`,
+  expand: `${PREFIX}-expand`,
+  expandOpen: `${PREFIX}-expandOpen`,
+  avatar: `${PREFIX}-avatar`,
+  text: `${PREFIX}-text`,
+  linkStyle: `${PREFIX}-linkStyle`,
+  plat: `${PREFIX}-plat`,
+}
+
+const Root = styled(Card)(({ theme }) => ({
+  [`&.${classes.root}`]: {
     maxWidth: 345,
     color: '#000!important',
     backgroundColor: '#726DA8',
-    margin: '1em'
+    margin: '1em',
   },
-  media: {
+  [`&.${classes.media}`]: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  expand: {
+  [`&.${classes.expand}`]: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
-  expandOpen: {
+  [`&.${classes.expandOpen}`]: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
+  [`&.${classes.avatar}`]: {
     backgroundColor: red[500],
   },
-  text: {
+  [`&.${classes.text}`]: {
     color: '#fff!important',
   },
-  linkStyle: {
+  [`&.${classes.linkStyle}`]: {
     color: "#fcfcfc",
     textDecoration: "none",
     margin: "5px",
     padding: "5px",
   },
-  plat: {
-    padding: "8px",
-    textAlign: "center",
-  }
+  [`&.${classes.plat}`]: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '0 1em',
+    padding: '0 1em',
+  },
 }));
 
 const Writeup = ({ writeup, setWriteup }) => {
-  const classes = useStyles();
-
   const imageUrl = `${url}/medias/image?path=${writeup.image}`;
   const link = `/writeups/${writeup._id}`;
   // const text = decodeURIComponent(escape(writeup.body )).substring(0, "50") + '...';
 
   return (
-    <Card className={classes.mainClass} sx={{ maxWidth: 345 }}>
+    <Root className={classes.mainClass} sx={{ maxWidth: 345 }}>
       {/* <img src="http://127.0.0.1:5000/api/medias/image?path=./uploads/img/2021/10/image-b10e82470f5df913980cea7f82d249069ceaa4f7.webp" /> */}
       <CardActionArea>
         <Link className={classes.linkStyle} to={ link }>
@@ -106,7 +115,7 @@ const Writeup = ({ writeup, setWriteup }) => {
           Share
         </Button>
       </CardActions> */}
-    </Card>
+    </Root>
   );
 };
 
