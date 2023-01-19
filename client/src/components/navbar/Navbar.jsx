@@ -1,6 +1,6 @@
 import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
@@ -44,21 +44,28 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const Navbar = () => {
-
-  const state = useSelector((state) => state);
-  const auth = useSelector((state) => state.auth);
-
-  console.log(state);
+  const [ loggedIn, setLoggedIn ] = useState(false);
+  // const state = useSelector((state) => state);
+  // const auth = useSelector((state) => state.auth);
+  const name = localStorage.getItem("name");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleSignOut = () => {
     // logout
-    dispatch(signOut());
+    localStorage.clear();
+    setLoggedIn(false);
 
     navigate("/signin");
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
 
   return (
     <Root>
@@ -75,10 +82,10 @@ const Navbar = () => {
             </Link>
           </Button>
           </Typography>
-          {auth._id ? (
+          {loggedIn? (
             <>
               <Typography variant="subtitle2" className='navRoot'>
-                Logged in as {auth.name}
+                Logged in as {name}
               </Typography>
               <Button color="inherit" onClick={() => handleSignOut()}>
                 Sign Out
