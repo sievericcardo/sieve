@@ -12,31 +12,31 @@ const ManageProjects = Loadable(lazy(() => import('../components/dashboard/proje
 const ManageWriteups = Loadable(lazy(() => import('../components/dashboard/writeups/ManageWriteups')));
 
 const DashboardRoutes = {
-  path: '/cms-dashboard',
+  path: '/',
   element: <DashboardLayout />,
   children: [
     {
-      path: '/',
+      path: '/cms-dashboard',
       element: <Dashboard />
     },
     {
-      path: 'chart',
+      path: '/cms-dashboard/chart',
       element: <Chart />
     },
     {
-      path: 'articles',
+      path: '/cms-dashboard/articles',
       element: <ManageArticles />
     },
     {
-      path: 'medias',
+      path: '/cms-dashboard/medias',
       element: <ManageMedias />
     },
     {
-      path: 'projects',
+      path: '/cms-dashboard/projects',
       element: <ManageProjects />
     },
     {
-      path: 'writeups',
+      path: '/cms-dashboard/writeups',
       element: <ManageWriteups />
     },
   ]
