@@ -20,6 +20,7 @@ const Root = styled('div')(({ theme }) => ({
     marginTop: '5vh',
     width: '80vw',
     margin: 'auto',
+    textAlign: 'center',
   },
   [`&.${classes.mainContent}`]: {
     position: 'relative',
