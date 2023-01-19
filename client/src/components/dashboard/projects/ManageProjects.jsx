@@ -13,9 +13,9 @@ const ManageProjects = () => {
         body: "",
     });
 
-    if(!auth._id) {
-        return <Navigate to="/signin" />
-    }
+    // if(!auth._id) {
+    //     return <Navigate to="/signin" />
+    // }
 
     return (
         <>

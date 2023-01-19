@@ -21,6 +21,7 @@ const Root = styled('div')(({ theme }) => ({
     width: '80vw',
     margin: 'auto',
     textAlign: 'center',
+    display: 'block'
   },
   [`&.${classes.mainContent}`]: {
     position: 'relative',

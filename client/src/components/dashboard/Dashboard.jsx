@@ -124,9 +124,9 @@ const Dashboard = () => {
     setOpen(true);
   };
 
-  if (auth === null) {
-    return <Navigate to="/" />;
-  }
+  // if (auth === null) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <Root className={ classes.root }>

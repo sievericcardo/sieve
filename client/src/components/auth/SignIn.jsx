@@ -68,6 +68,7 @@ const SignIn = () => {
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
+        style={{ maxWidth: "600px", margin: "auto" }}
       >
         <Typography variant="h5" className={ classes.formTitle }>Sign in</Typography>
         <TextField
@@ -78,6 +79,7 @@ const SignIn = () => {
           fullWidth
           value={creds.name}
           onChange={(e) => setCreds({ ...creds, name: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <TextField
           className={classes.spacing}
@@ -88,6 +90,7 @@ const SignIn = () => {
           fullWidth
           value={creds.password}
           onChange={(e) => setCreds({ ...creds, password: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <Button
           className={classes.spacing}

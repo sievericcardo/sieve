@@ -68,6 +68,7 @@ const SignUp = () => {
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
+        style={{ maxWidth: "600px", margin: "auto" }}
       >
         <Typography variant="h5">Sign up</Typography>
         <TextField
@@ -78,6 +79,7 @@ const SignUp = () => {
           fullWidth
           value={user.name}
           onChange={(e) => setUser({ ...user, name: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <TextField
           className={classes.spacing}
@@ -87,6 +89,7 @@ const SignUp = () => {
           fullWidth
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <TextField
           className={classes.spacing}
@@ -97,6 +100,7 @@ const SignUp = () => {
           fullWidth
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <Button
           className={classes.spacing}

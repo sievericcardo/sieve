@@ -1,5 +1,4 @@
 import { lazy } from 'react';
-import { useRoutes } from 'react-router-dom';
 
 import Loadable from '../components/ui/Loadable';
 import DashboardLayout from '../layout/DashboardLayout';
@@ -16,32 +15,30 @@ const DashboardRoutes = {
   element: <DashboardLayout />,
   children: [
     {
-      path: '/cms-dashboard',
+      path: '/cms/dashboard',
       element: <Dashboard />
     },
     {
-      path: '/cms-dashboard/chart',
+      path: '/cms/chart',
       element: <Chart />
     },
     {
-      path: '/cms-dashboard/articles',
+      path: '/cms/articles',
       element: <ManageArticles />
     },
     {
-      path: '/cms-dashboard/medias',
+      path: '/cms/medias',
       element: <ManageMedias />
     },
     {
-      path: '/cms-dashboard/projects',
+      path: '/cms/projects',
       element: <ManageProjects />
     },
     {
-      path: '/cms-dashboard/writeups',
+      path: '/cms/writeups',
       element: <ManageWriteups />
     },
   ]
 };
 
-export default function ThemeRoutes() {
-  return useRoutes(DashboardRoutes);
-}
+export default DashboardRoutes;

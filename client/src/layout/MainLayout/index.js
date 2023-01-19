@@ -73,7 +73,7 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'block' }}>
       <CssBaseline />
       <main theme={theme}>
         <Navbar />

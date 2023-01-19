@@ -109,7 +109,7 @@ const App = () => {
   // );
   return (
     <StyledEngineProvider injectFirst>
-      <div className="App">
+      <div className="App" style={{ width: "100vw" }}>
         <BrowserRouter>
           <ThemeProvider theme={theme(customization)}>
             <CssBaseline />
