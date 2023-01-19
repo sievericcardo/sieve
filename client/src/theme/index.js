@@ -37,6 +37,9 @@ export const theme = (customization) => {
         '@media (min-width: 600px)': {
           minHeight: '48px'
         }
+      },
+      body: {
+        width: '100vw',
       }
     },
     typography: themeTypography(themeOption)
