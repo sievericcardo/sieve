@@ -31,6 +31,7 @@ h4 {
 body {
   overflow-y: overlay;
   min-height: 100vh;
+  width: 100vw;
 }
 
 .MuiCard-root {
