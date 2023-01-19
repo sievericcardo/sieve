@@ -21,9 +21,9 @@ const App = () => {
   const customization = useSelector((state) => state.customization);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadUser())
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadUser())
+  // }, [dispatch]);
 
   return (
     <StyledEngineProvider injectFirst>
