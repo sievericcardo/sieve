@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Drawer,
@@ -57,8 +57,12 @@ const Sidebar = () => {
   //   setOpen(true);
   // };
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpen((open) => !open);
   };
+
+  useEffect (() => {
+    setOpen(true);
+  }, []);
 
   return (
     <Root className={ classes.sideBar }>
