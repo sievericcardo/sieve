@@ -47,7 +47,7 @@ const Navbar = () => {
   const [ loggedIn, setLoggedIn ] = useState(false);
   // const state = useSelector((state) => state);
   // const auth = useSelector((state) => state.auth);
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("user");
 
   const navigate = useNavigate();
   // const dispatch = useDispatch();
@@ -77,13 +77,18 @@ const Navbar = () => {
               <span className='navTitle'>Sieve</span>
             </Link>
             <Button color="inherit">
-            <Link className='navLinkStyle' to="/writeups">
-              Writeups
-            </Link>
-          </Button>
+              <Link className='navLinkStyle' to="/writeups">
+                Writeups
+              </Link>
+            </Button>
           </Typography>
           {loggedIn? (
             <>
+              <Button color="inherit">
+                <Link className='navLinkStyle' to="/cms/dahsboard">
+                  Backend
+                </Link>
+              </Button>
               <Typography variant="subtitle2" className='navRoot'>
                 Logged in as {name}
               </Typography>
@@ -94,7 +99,7 @@ const Navbar = () => {
           ) : (
             <>
               <Button color="inherit">
-                <Link className='navLinkStyle' to="/signin">
+                <Link className='navLinkStyle' to="/auth/signin">
                   Sign In
                 </Link>
               </Button>
