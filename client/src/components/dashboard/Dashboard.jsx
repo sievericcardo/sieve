@@ -46,7 +46,7 @@ const classes = {
 
 const Root = styled('div')(({ theme }) => ({
   [`&.${classes.root}`]: {
-    display: 'flex',
+    display: 'block',
   },
   [`&.${classes.toolbar}`]: {
     paddingRight: 24,
@@ -130,7 +130,7 @@ const Dashboard = () => {
 
   return (
     <Root className={ classes.root }>
-      <CssBaseline />
+      {/* <CssBaseline />
       <AppBar
         position="absolute"
         className={ clsx(classes.appBar, open && classes.appBarShift) }
@@ -161,7 +161,7 @@ const Dashboard = () => {
             </IconButton>
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
     </Root>
   )
 }
