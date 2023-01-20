@@ -80,7 +80,7 @@ const DashboardLayout = () => {
   }, [matchDownMd]);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'block' }}>
       <CssBaseline />
       <Navbar />
       <Sidebar onLeftDrawerToggle={handleLeftDrawerToggle} open={leftDrawerOpened} />
