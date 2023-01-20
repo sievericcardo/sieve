@@ -9,7 +9,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { signUp } from "../../store/actions/authActions";
+// import { signUp } from "../../store/actions/authActions";
+import { signUp } from '../../hooks/authHooks';
 
 const PREFIX = "SignUp";
 const classes = {
@@ -40,6 +41,8 @@ const SignUp = () => {
 
   const auth = useSelector((state) => state.auth);
 
+  //
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -49,7 +52,9 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent refresh of the browser
 
-    dispatch(signUp(user));
+    // dispatch(signUp(user));
+    console.log(user);
+    signUp(user);
     setUser({
       name: "",
       email: "",
@@ -57,7 +62,9 @@ const SignUp = () => {
     });
   };
 
-  if (auth._id) {
+  const token = localStorage.getItem("token");
+
+  if (token) {
     return <Navigate to="/" />;
   }
 
