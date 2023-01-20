@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Navigate } from "react-router-dom";
 
-import { signIn } from "../../store/actions/authActions";
+// import { signIn } from "../../store/actions/authActions";
+import { signIn } from '../../hooks/authHooks';
 
 import {
   Typography,
@@ -38,9 +39,9 @@ const Root = styled("div")(({ theme }) => ({
 
 
 const SignIn = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const auth = useSelector((state) => state.auth);
+  // const auth = useSelector((state) => state.auth);
 
   const [creds, setCreds] = useState({
     name: "",
@@ -50,15 +51,18 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(signIn(creds));
+    signIn(creds);
+    // dispatch(signIn(creds));
     setCreds({
       name: "",
       password: "",
     });
   };
 
-  if (auth._id) {
-    return <Navigate to="/cms-dashboard" />;
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    return <Navigate to="/cms/dashboard" />;
   }
 
   return (
