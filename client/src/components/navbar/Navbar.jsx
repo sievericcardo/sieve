@@ -85,7 +85,7 @@ const Navbar = () => {
           {loggedIn? (
             <>
               <Button color="inherit">
-                <Link className='navLinkStyle' to="/cms/dahsboard">
+                <Link className='navLinkStyle' to="/cms/dashboard">
                   Backend
                 </Link>
               </Button>
