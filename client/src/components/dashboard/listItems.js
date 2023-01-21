@@ -22,7 +22,7 @@ import {
 
 export const mainListItems = (
   <div>
-    <Link className="linkStyle" to='/cms-dashboard'>
+    <Link className="linkStyle" to='/cms/dashboard'>
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />
@@ -30,7 +30,7 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-medias'>
+    <Link className="linkStyle" to='/cms/medias'>
       <ListItem button>
         <ListItemIcon>
           <PermMediaIcon />
@@ -38,7 +38,7 @@ export const mainListItems = (
         <ListItemText primary="Media" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-articles'>
+    <Link className="linkStyle" to='/cms/articles'>
       <ListItem button>
         <ListItemIcon>
          <Book />
@@ -46,7 +46,7 @@ export const mainListItems = (
         <ListItemText primary="Articles" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-projects'>
+    <Link className="linkStyle" to='/cms/projects'>
       <ListItem button>
         <ListItemIcon>
           <AccountTree />
@@ -54,7 +54,7 @@ export const mainListItems = (
         <ListItemText primary="Projects" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-writeups'>
+    <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
           <DescriptionIcon />
@@ -85,6 +85,69 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
+    </ListItem>
+  </div>
+)
+
+export const mainListItemsMobile = (
+  <div>
+    <Link className="linkStyle" to='/cms/dashboard'>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/medias'>
+      <ListItem button>
+        <ListItemIcon>
+          <PermMediaIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/articles'>
+      <ListItem button>
+        <ListItemIcon>
+         <Book />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/projects'>
+      <ListItem button>
+        <ListItemIcon>
+          <AccountTree />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/writeups'>
+      <ListItem button>
+        <ListItemIcon>
+          <DescriptionIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+  </div>
+);
+
+export const secondaryListItemsMobile = (
+  <div>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Current month" /> */}
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Last quarter" /> */}
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Year-end sale" /> */}
     </ListItem>
   </div>
 )
