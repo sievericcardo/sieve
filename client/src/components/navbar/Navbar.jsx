@@ -1,14 +1,11 @@
 import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import { Link, useNavigate } from "react-router-dom";
-
-import { signOut } from "../../store/actions/authActions";
 
 const PREFIX = "Navbar";
 const classes = {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { Typography, TextField, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { Send } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
 
