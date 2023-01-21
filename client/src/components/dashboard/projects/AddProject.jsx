@@ -68,6 +68,7 @@ const AddProject = ({ project, setProject }) => {
         autoComplete="off"
         className={classes.formStyle}
         onSubmit={ handleSubmit }
+        style={{ marginBottom: "30px" }}
       >
         <TextField
           id="enter-project"
@@ -77,6 +78,7 @@ const AddProject = ({ project, setProject }) => {
           fullWidth
           value={project.name}
           onChange={(e) => setProject({ ...project, name: e.target.value })}
+          style={{ marginRight: "5px" }}
         />
         <TextField 
           id="project-body"
@@ -87,12 +89,14 @@ const AddProject = ({ project, setProject }) => {
           fullWidth
           value={project.body}
           onChange={(e) => setProject({ ...project, body: e.target.value })}
+          style={{ marginRight: "5px" }}
         />
         <Button
           className={classes.submitButton}
           color="primary"
           variant="contained"
           type="submit"
+          style={{ borderRadius: "18px" }}
         >
           <Send />
         </Button>
