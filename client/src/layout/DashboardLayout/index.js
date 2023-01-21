@@ -1,22 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import { styled, useTheme } from '@mui/material/styles';
 import {
-  AppBar,
   Box,
   CssBaseline,
-  Toolbar,
-  useMediaQuery
 } from '@mui/material';
 
 import Sidebar from '../../components/dashboard/Sidebar';
-import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/navbar/Footer';
 import Customization from '../Customization';
 import { drawerWidth } from '../../store/constants';
-import { SET_MENU } from '../../store/actions';
 
 const Root = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open'
