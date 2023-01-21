@@ -30,19 +30,19 @@ const Root = styled('main', {
         duration: theme.transitions.duration.leavingScreen
     }),
     [theme.breakpoints.up('md')]: {
-      marginLeft: -(drawerWidth - 20),
-      width: `calc(100% - ${drawerWidth}px)`
+      marginLeft: '260px',
+      width: `calc(100% - ${drawerWidth}px - 30px)`
     },
     [theme.breakpoints.down('md')]: {
       marginLeft: '20px',
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: '85vw',
       padding: '16px'
     },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: '10px',
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: `76vw`,
       padding: '16px',
-      marginRight: '10px'
+      marginRight: '30px',
+      marginLeft: '85px'
     }
   }),
   ...(open && {
@@ -65,26 +65,12 @@ const Root = styled('main', {
 
 const DashboardLayout = () => {
   const theme = useTheme();
-  const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
-
-  // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
-  const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-  };
-
-  useEffect(() => {
-    dispatch({ type: SET_MENU, opened: !matchDownMd });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matchDownMd]);
 
   return (
     <Box sx={{ display: 'block' }}>
       <CssBaseline />
-      <Navbar />
-      <Sidebar onLeftDrawerToggle={handleLeftDrawerToggle} open={leftDrawerOpened} />
-      <Root theme={theme} open={leftDrawerOpened}>
+      <Sidebar />
+      <Root theme={theme}>
         <Outlet />
       </Root>
       <Footer />
