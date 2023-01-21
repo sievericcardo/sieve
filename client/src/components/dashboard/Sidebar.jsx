@@ -9,12 +9,11 @@ import {
   Typography,
   useMediaQuery,
   Link,
-  Button
 } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import {
-  ChevronLeft as ChevronLeftIcon,
-  Menu as MenuIcon
+  Menu as MenuIcon,
+  Architecture as ArchitectureIcon
 } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles'; 
 
@@ -62,25 +61,6 @@ const Root = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    paddingLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }),
-);
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -108,17 +88,9 @@ const AppBar = styled(MuiAppBar, {
 
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -127,7 +99,6 @@ const Sidebar = () => {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
@@ -155,10 +126,8 @@ const Sidebar = () => {
         open={ open }
         style={{ maxWidth: drawerWidth }}
       >
-        <div className={ classes.toolbarIcon }>
-          <IconButton onClick={ handleDrawerClose }>
-            <ChevronLeftIcon />
-          </IconButton>
+        <div style={{ padding: '15px' }}>
+          <ArchitectureIcon className='navIcon' fontSize="large" />
         </div>
         {!isMobile ? (
           <>
