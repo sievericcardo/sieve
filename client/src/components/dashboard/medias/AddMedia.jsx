@@ -92,6 +92,7 @@ const AddMedia = ({ media, setMedia }) => {
         className={ classes.formStyle }
         encType='multipart/form-data'
         onSubmit={ handleSubmit }
+        style={{ marginBottom: "30px"}}
       >
         <TextField 
           id="media-alt"
@@ -116,6 +117,7 @@ const AddMedia = ({ media, setMedia }) => {
           color="primary"
           variant="contained"
           type="submit"
+          style={{ borderRadius: "18px" }}
         >
           <Send />
         </Button>
