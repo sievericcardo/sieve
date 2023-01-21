@@ -95,6 +95,7 @@ const AddArticle = ({ article, setArticle }) => {
         className={ classes.formStyle }
         encType='multipart/form-data'
         onSubmit={ handleSubmit }
+        style={{ marginBottom: "30px" }}
       >
         <TextField
           id="enter-article"
@@ -104,6 +105,7 @@ const AddArticle = ({ article, setArticle }) => {
           fullWidth
           value={article.name}
           onChange={(e) => setArticle({ ...article, name: e.target.value })}
+          style={{ marginBottom: "15px" }}
         />
         <TextField 
           id="article-body"
@@ -114,6 +116,7 @@ const AddArticle = ({ article, setArticle }) => {
           fullWidth
           value={article.body}
           onChange={(e) => setArticle({ ...article, body: e.target.value })}
+          style={{ marginBottom: "15px" }}
         />
         <input
           type="file"
@@ -128,6 +131,7 @@ const AddArticle = ({ article, setArticle }) => {
           color="primary"
           variant="contained"
           type="submit"
+          style={{ borderRadius: "18px" }}
         >
           <Send />
         </Button>
