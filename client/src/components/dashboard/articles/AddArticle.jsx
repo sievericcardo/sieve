@@ -6,7 +6,6 @@ import {
   Button,
 } from "@mui/material";
 import { Send } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
 
 import { addArticle, updateArticle } from "../../../store/actions/articleActions";
 
@@ -16,27 +15,6 @@ const classes = {
   submitButton: `${PREFIX}-submitButton`,
   imageUpload: `${PREFIX}-imageUpload`,
 };
-
-const Root = styled("div")(({ theme }) => ({
-  [`&.${classes.formStyle}`]: {
-    maxWidth: "70vw",
-    margin: "0px auto",
-    padding: "30px",
-    borderRadius: "9px",
-    boxShadow: "0px 0px 12px -3px #000",
-    display: "flex",
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
-  },
-  [`&.${classes.submitButton}`]: {
-    marginLeft: "20px",
-  },
-  [`&.${classes.imageUpload}`]: {
-    color: "#4d3f5a",
-    padding: "10px",
-    margin: "10px",
-  },
-}));
 
 const AddArticle = ({ article, setArticle }) => {
   const dispatch = useDispatch();
