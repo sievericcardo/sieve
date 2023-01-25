@@ -54,7 +54,7 @@ const Navbar = () => {
     localStorage.clear();
     setLoggedIn(false);
 
-    navigate("/signin");
+    navigate("/auth/signin");
   };
 
   useEffect(() => {
