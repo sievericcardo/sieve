@@ -51,7 +51,12 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    signIn(creds);
+    const res = signIn(creds);
+
+    if (res) {
+      return <Navigate to = "/cms/dashboard" />
+    }
+
     // dispatch(signIn(creds));
     setCreds({
       name: "",
