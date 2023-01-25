@@ -11,6 +11,7 @@ const ManageArticles = () => {
     const [ article, setArticle ] = useState({
         name: "",
         body: "",
+        author: "Riccardo",
     });
 
     // if(!auth._id) {

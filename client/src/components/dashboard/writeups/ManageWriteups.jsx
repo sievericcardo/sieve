@@ -15,7 +15,7 @@ const ManageWriteups = () => {
     });
 
     if(!auth._id) {
-        return <Navigate to="/signin" />
+        return <Navigate to="/auth/signin" />
     }
 
     return (

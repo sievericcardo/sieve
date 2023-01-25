@@ -11,6 +11,7 @@ const ManageProjects = () => {
     const [ project, setProject ] = useState({
         name: "",
         body: "",
+        author: "Riccardo",
     });
 
     // if(!auth._id) {
