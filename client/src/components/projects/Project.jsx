@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Typography } from '@mui/material';
+import {
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+} from '@mui/material';
 import { AllInclusive } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
@@ -17,13 +24,35 @@ const Root = styled('div')(({ theme }) => ({
 
 const  Project = ({ project, setProject }) => {
   return (
-    <Root className={ classes.projects }>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        image="/assets/img/base-img/steghide-is-fun.png"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          { project.name }
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          { project.body }
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  );
+}
+
+    // Old block of code for the project component
+    /* <Root className={ classes.projects }>
       <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
       <Typography variant="body2">
         {project.body}
       </Typography>
-    </Root>
-  );
-}
+    </Root> */
 
 export default Project;
