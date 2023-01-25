@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Project from './Project';
-import { getProjects } from '../../store/actions/projectActions';
+// import { getProjects } from '../../store/actions/projectActions';
+import { getProjects } from '../../hooks/projectHooks';
 
 const PREFIX = 'ListProjects';
 const classes = {
@@ -25,11 +26,20 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const ListProjects = ({ project, setProject }) => {
-  const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects);
+const ListProjects = () => {
+  // const dispatch = useDispatch();
+  // const projects = useSelector((state) => state.projects);
+  const [ projects, setProjects ] = useState();
 
   var length = 0;
+
+  // Use Effect will be called when our components renders
+  useEffect(() => {
+    getProjects().then((res) => {
+      setProjects(res);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!projects) {
     length = 0
@@ -37,10 +47,8 @@ const ListProjects = ({ project, setProject }) => {
     length = projects.length
   }
 
-  // Use Effect will be called when our components renders
-  useEffect(() => {
-    dispatch(getProjects());
-  }, [dispatch]); // this is to avoid it making continually rendering
+  console.log(projects);
+  console.log(getProjects());
 
   return (
     <Root className={classes.root}>
@@ -49,11 +57,10 @@ const ListProjects = ({ project, setProject }) => {
         {projects &&
           projects.map((project) => {
             return (
-              <Grid item xs={6}>
+              <Grid item xs={2}>
                 <Project
                   project={project}
                   key={project._id}
-                  setProject={setProject}
                 />
               </Grid>
             );
