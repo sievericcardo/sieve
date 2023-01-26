@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Navigate } from "react-router-dom";
 
-// import { signIn } from "../../store/actions/authActions";
 import { signIn } from '../../hooks/authHooks';
 
 import {
@@ -39,10 +37,6 @@ const Root = styled("div")(({ theme }) => ({
 
 
 const SignIn = () => {
-  // const dispatch = useDispatch();
-
-  // const auth = useSelector((state) => state.auth);
-
   const [creds, setCreds] = useState({
     name: "",
     password: "",
@@ -57,7 +51,6 @@ const SignIn = () => {
       return <Navigate to = "/cms/dashboard" />
     }
 
-    // dispatch(signIn(creds));
     setCreds({
       name: "",
       password: "",
