@@ -47,9 +47,6 @@ const ListProjects = () => {
     length = projects.length
   }
 
-  console.log(projects);
-  console.log(getProjects());
-
   return (
     <Root className={classes.root}>
     {length > 0 ? (
