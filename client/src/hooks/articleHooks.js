@@ -5,7 +5,18 @@ import { url, setHeaders } from "../api/index";
 export const getArticles = async () => {
   try {
     const articles = await axios.get(`${url}/articles`, setHeaders());
-    return articles;
+    return articles.data;
+  } catch (error) {
+    toast.error(error.response?.data, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  }
+};
+
+export const getArticle = async (id) => {
+  try {
+    const article = await axios.get(`${url}/articles/${id}`, setHeaders());
+    return article.data;
   } catch (error) {
     toast.error(error.response?.data, {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -15,12 +26,18 @@ export const getArticles = async () => {
 
 export const addArticle = async (article) => {
   try {
-    const addedArticle = await axios.post(
+    await axios.post(
       `${url}/articles`,
       article,
       setHeaders()
-    );
-    return addedArticle;
+    )
+    .then (() => {
+      toast.success("The article was added", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+
+      return true;
+    })
   } catch (error) {
     toast.error(error.response?.data, {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -30,12 +47,18 @@ export const addArticle = async (article) => {
 
 export const updateArticle = async (updatedArticle, id) => {
   try {
-    const article = await axios.put(
+    await axios.put(
       `${url}/articles/${id}`,
       updatedArticle,
       setHeaders()
-    );
-    return article;
+    )
+    .then (() => {
+      toast.success("The article was updated", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+
+      return true;
+    });
   } catch (error) {
     toast.error(error.response?.data, {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -45,8 +68,13 @@ export const updateArticle = async (updatedArticle, id) => {
 
 export const deleteArticle = async (id) => {
   try {
-    const article = await axios.delete(`${url}/articles/${id}`, setHeaders());
-    return article;
+    await axios.delete(`${url}/articles/${id}`, setHeaders())
+    .then (() => {
+      toast.success("The article was deleted", {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return true;
+    });
   } catch (error) {
     toast.error(error.response?.data, {
       position: toast.POSITION.BOTTOM_RIGHT,
