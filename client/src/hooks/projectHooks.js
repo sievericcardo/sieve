@@ -16,7 +16,6 @@ export const getProjects = async () => {
 export const getProject = async (id) => {
   try {
     const project = await axios.get(`${url}/projects/${id}`);
-
     return project.data;
   } catch (error) {
     toast.error(error.response?.data, {
@@ -27,7 +26,7 @@ export const getProject = async (id) => {
 
 export const addProject = async (project) => {
   try {
-    const addedProject = await axios.post(
+    await axios.post(
       `${url}/projects`,
       project,
       setHeaders()
