@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 import {
@@ -37,12 +36,6 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-
-  const auth = useSelector((state) => state.auth);
-
-  //
-
   const [user, setUser] = useState({
     name: "",
     email: "",
