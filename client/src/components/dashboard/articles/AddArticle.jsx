@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import {
   TextField,
@@ -7,7 +6,7 @@ import {
 } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
-import { addArticle, updateArticle } from "../../../store/actions/articleActions";
+import { addArticle, updateArticle } from "../../../hooks/articleHooks";
 
 const PREFIX = "AddArticle";
 const classes = {
@@ -17,7 +16,6 @@ const classes = {
 };
 
 const AddArticle = ({ article, setArticle }) => {
-  const dispatch = useDispatch();
 
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -42,7 +40,7 @@ const AddArticle = ({ article, setArticle }) => {
         author: "Riccardo",
       };
 
-      dispatch(updateArticle(updatedArticle, id));
+      updateArticle(updatedArticle, id);
     } else {
       var file = article.image;
 
@@ -54,7 +52,7 @@ const AddArticle = ({ article, setArticle }) => {
             date: new Date(),
           };
     
-          dispatch(addArticle(newArticle));
+          addArticle(newArticle);
         }
       );
     }
@@ -78,7 +76,7 @@ const AddArticle = ({ article, setArticle }) => {
         <TextField
           id="enter-article"
           variant="outlined"
-          label="Article title"
+          label="Writeup title"
           autoFocus
           fullWidth
           value={article.name}
@@ -89,7 +87,7 @@ const AddArticle = ({ article, setArticle }) => {
           id="article-body"
           aria-label="minimum height"
           minRows={1}
-          label="Article body"
+          label="Writeup body"
           variant="outlined"
           fullWidth
           value={article.body}
