@@ -27,6 +27,11 @@ const classes = {
 
 const Root = styled('div')(({ theme }) => ({}));
 
+const Block = styled('div')({
+  width: '80vw',
+  margin: '0 auto',
+})
+
 const Home = () => {
   return(
     <Root className={ classes.base }>
@@ -47,21 +52,23 @@ const Home = () => {
         <Typography variant="body1">
           Even now that passion still lies and I keep learning and studying to improve and I constantly look for challenges and improvement possibilities.
         </Typography>
-        </div>
+      </div>
+      <Block>
         <Typography variant="h3" className='subTitle'>
-          My projects
+          Projects
         </Typography>
         <Projects />
         <Typography variant="h3" className='subTitle'>
-          My posts
+          Writeups
         </Typography>
         <Articles />
-        <div>
+      </Block>
+      <div>
         <p>&nbsp;</p>
         <Typography 
           variant="h2"
-           className='homeSubTitle' 
-           style={{ textAlign: 'center' }}>
+          className='homeSubTitle' 
+          style={{ textAlign: 'center' }}>
           Come see me on other platform as well
         </Typography>
         <div className='icons'>
