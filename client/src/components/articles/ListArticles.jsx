@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
 import { styled } from "@mui/material/styles";
 import {
@@ -7,9 +6,7 @@ import {
 } from "@mui/material";
 
 import Article from './Article';
-import { getArticles } from '../../store/actions/articleActions';
-
-// import itemData from './itemData';
+import { getArticles } from '../../hooks/articleHooks';
 
 const PREFIX = "ListArticles";
 const classes = {
@@ -44,10 +41,20 @@ const Root = styled("div")(({ theme }) => ({
   },
 }));
 
-const ListArticles = ({ setArticle }) => {
+const ListArticles = () => {
+  const [ articles, setArticles ] = useState({
+    name: "",
+    description: "",
+    author: "Riccardo"
+  });
 
-  const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
+  // Use Effect will be called when our components renders
+  useEffect(() => {
+    getArticles().then((res) => {
+      setArticles(res);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   var length = 0;
 
@@ -56,11 +63,6 @@ const ListArticles = ({ setArticle }) => {
   } else {
     length = articles.length
   }
-
-  // Use Effect will be called when our components renders
-  useEffect(() => {
-    dispatch(getArticles());
-  }, [dispatch]); // this is to avoid it making continually rendering
 
   return (
     <Root className={classes.root}>
@@ -72,7 +74,6 @@ const ListArticles = ({ setArticle }) => {
               <Article
                 article={article}
                 key={article._id}
-                setArticle={setArticle}
               />
             );
           })}
