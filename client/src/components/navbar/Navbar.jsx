@@ -73,11 +73,11 @@ const Navbar = () => {
             <Link className='navLinkStyle' to="/">
               <span className='navTitle'>Sieve</span>
             </Link>
-            <Button color="inherit">
+            {/* <Button color="inherit">
               <Link className='navLinkStyle' to="/writeups">
                 Writeups
               </Link>
-            </Button>
+            </Button> */}
           </Typography>
           {loggedIn? (
             <>
