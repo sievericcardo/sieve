@@ -16,7 +16,6 @@ import {
   Assignment as AssignmentIcon,
   PermMedia as PermMediaIcon,
   AccountTree,
-  Description as DescriptionIcon,
   Book,
 } from '@mui/icons-material';
 
@@ -38,12 +37,12 @@ export const mainListItems = (
         <ListItemText primary="Media" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms/articles'>
+    <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
          <Book />
         </ListItemIcon>
-        <ListItemText primary="Articles" />
+        <ListItemText primary="Writeups" />
       </ListItem>
     </Link>
     <Link className="linkStyle" to='/cms/projects'>
@@ -54,14 +53,14 @@ export const mainListItems = (
         <ListItemText primary="Projects" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms/writeups'>
+    {/* <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
           <DescriptionIcon />
         </ListItemIcon>
         <ListItemText primary="Writeups" />
       </ListItem>
-    </Link>
+    </Link> */}
   </div>
 );
 
@@ -105,7 +104,7 @@ export const mainListItemsMobile = (
         </ListItemIcon>
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms/articles'>
+    <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
          <Book />
@@ -119,13 +118,13 @@ export const mainListItemsMobile = (
         </ListItemIcon>
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms/writeups'>
+    {/* <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
           <DescriptionIcon />
         </ListItemIcon>
       </ListItem>
-    </Link>
+    </Link> */}
   </div>
 );
 
