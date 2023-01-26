@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-// import { signUp } from "../../store/actions/authActions";
 import { signUp } from '../../hooks/authHooks';
 
 const PREFIX = "SignUp";
@@ -45,7 +44,6 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent refresh of the browser
 
-    // dispatch(signUp(user));
     console.log(user);
     signUp(user);
     setUser({

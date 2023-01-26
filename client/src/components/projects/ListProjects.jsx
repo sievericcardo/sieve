@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
 
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -27,8 +26,6 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const ListProjects = () => {
-  // const dispatch = useDispatch();
-  // const projects = useSelector((state) => state.projects);
   const [ projects, setProjects ] = useState();
 
   var length = 0;
