@@ -8,7 +8,7 @@ const Chart = Loadable(lazy(() => import('../components/dashboard/Chart')));
 const ManageArticles = Loadable(lazy(() => import('../components/dashboard/articles/ManageArticles')));
 const ManageMedias = Loadable(lazy(() => import('../components/dashboard/medias/ManageMedias')));
 const ManageProjects = Loadable(lazy(() => import('../components/dashboard/projects/ManageProjects')));
-const ManageWriteups = Loadable(lazy(() => import('../components/dashboard/writeups/ManageWriteups')));
+// const ManageWriteups = Loadable(lazy(() => import('../components/dashboard/writeups/ManageWriteups')));
 
 const DashboardRoutes = {
   path: '/',
@@ -23,7 +23,7 @@ const DashboardRoutes = {
       element: <Chart />
     },
     {
-      path: '/cms/articles',
+      path: '/cms/writeups',
       element: <ManageArticles />
     },
     {
@@ -33,10 +33,6 @@ const DashboardRoutes = {
     {
       path: '/cms/projects',
       element: <ManageProjects />
-    },
-    {
-      path: '/cms/writeups',
-      element: <ManageWriteups />
     },
   ]
 };
