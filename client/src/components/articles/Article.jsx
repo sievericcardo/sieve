@@ -17,13 +17,9 @@ import {
 } from '@mui/material';
 import { red } from '@mui/material/colors';
 import {
-  ExpandMore as ExpandMoreIcon
+  ExpandMore as ExpandMoreIcon,
+  MoreVert as MoreVertIcon,
 } from '@mui/icons-material';
-
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import moment from "moment";
 
@@ -40,8 +36,8 @@ const classes = {
 }
 
 const Root = styled(Card)(({ theme }) => ({
+  color: '#000',
   [`&.${classes.root}`]: {
-    maxWidth: 345,
     color: '#000!important',
     backgroundColor: '#726DA8',
     margin: '1em',
@@ -68,7 +64,7 @@ const Root = styled(Card)(({ theme }) => ({
   },
 }));
 
-const  Article = ({ article, setArticle }) => {
+const  Article = ({ article }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -78,38 +74,35 @@ const  Article = ({ article, setArticle }) => {
   const imageUrl = `${url}/articles/image?path=${article.image}`
 
   return (
-    <Root className={classes.root}>
-      <CardHeader className={ classes.text }
+    <Root className={classes.root} sx={{ maxWidth: 345 }}>
+      <CardHeader
+        className={classes.text}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title={ article.name }
-        subheader={ moment(article.date).fromNow() }
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={article.name}
+        subheader={moment(article.date).fromNow()}
       />
       <CardMedia
         className={classes.media}
+        component="img"
+        alt={ article.name }
+        height="140"
         image={ imageUrl }
-        title={ article.name }
       />
       <CardContent className={ classes.text }>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="p" sx={{ color: 'white' }}>
           { article.body.substring(0, "50") }...
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -123,7 +116,7 @@ const  Article = ({ article, setArticle }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={ classes.text }>
-          <Typography paragraph>{ article.body }</Typography>
+          <Typography paragraph sx={{ color: 'white' }}>{ article.body }</Typography>
         </CardContent>
       </Collapse>
     </Root>
