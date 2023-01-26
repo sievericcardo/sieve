@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import { Typography, Button, ButtonGroup } from "@mui/material";
 import { Create, Delete, CheckCircle } from "@mui/icons-material";
@@ -7,7 +6,7 @@ import { styled } from "@mui/material/styles";
 
 import moment from "moment";
 
-import { checkArticle, deleteArticle } from "../../../store/actions/articleActions";
+import { updateArticle, deleteArticle } from "../../../hooks/articleHooks";
 
 const PREFIX = "DashboardArticle";
 const classes = {
@@ -40,7 +39,6 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const Article = ({ article, setArticle }) => {
-  const dispatch = useDispatch();
 
   const handleUpdateClick = () => {
     setArticle(article); // Using the article passed as prop from the list to do
@@ -53,11 +51,11 @@ const Article = ({ article, setArticle }) => {
   };
 
   const handleCheck = (id) => {
-    dispatch(checkArticle(id));
+    updateArticle(id);
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteArticle(id));
+    deleteArticle(id);
   };
 
   return (
