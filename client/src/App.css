@@ -38,3 +38,11 @@ body {
     margin-left: 1em;
     margin-right: 1em;
 }
+
+.MuiCardHeader-title {
+  color: #fff!important;
+}
+
+.MuiCardHeader-subheader {
+  color: #fff!important;
+}
