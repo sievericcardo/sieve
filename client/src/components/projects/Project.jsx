@@ -13,22 +13,16 @@ import { styled } from '@mui/material/styles';
 
 import { url } from '../../api';
 
-const PREFIX = 'Project';
-const classes = {
-  projects: `${PREFIX}-projects`,
-};
+const Root = styled(Card)({
+  backgroundColor: 'rgba(50, 115, 220, 0.3)',
+});
 
-const Root = styled('div')(({ theme }) => ({
-  [`&.${classes.projects}`]: {
-    color: '#000',
-  }
-}));
 
 const  Project = ({ project }) => {
   const imageUrl = `${url}/projects/image?path=${project.image}`
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Root sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="Project Image"
@@ -36,18 +30,17 @@ const  Project = ({ project }) => {
         image={ imageUrl }
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: 'bold' }}>
           { project.name }
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.primary">
           { project.description }
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
-    </Card>
+    </Root>
   );
 }
 
