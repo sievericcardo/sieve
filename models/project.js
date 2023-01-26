@@ -9,7 +9,9 @@ const projectSchema = new mongoose.Schema({
   },
   author: String,
   uid: String,
+  description: String,
   body: String,
+  image: String,
   date: {
     type: Date,
     default: new Date()
