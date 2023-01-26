@@ -8,13 +8,14 @@ import {
   CardMedia,
   Button,
 } from '@mui/material';
-import { AllInclusive } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 import { url } from '../../api';
 
 const Root = styled(Card)({
   backgroundColor: 'rgba(50, 115, 220, 0.3)',
+  marginTop: '1.4rem',
+  marginBottom: '1rem',
 });
 
 
