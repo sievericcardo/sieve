@@ -1,6 +1,5 @@
 const winston = require("winston");
 const auth = require("../middleware/auth");
-const imageHandler = require("../middleware/imageHandling");
 const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
@@ -58,13 +57,7 @@ router.post("/", auth, async (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  const { name, author, description, body, date, uid } = req.body;
-
-  // Handle the image using the ../middleware/imageHandling.js middleware
-  const image = imageHandler(req.body.image);
-
-  // Create a new Project object mapping the request body to the Project model
-  // name: name, author: author, description: description, body: body, image: imagePath, date: date, uid: uid
+  const { name, author, description, image, body, date, uid } = req.body;
 
   let project = new Project({ name, author, description, body, image, date, uid });
 
@@ -108,27 +101,6 @@ router.put("/:id", auth, async (req, res) => {
 
   res.send(updatedProject);
 });
-
-// router.patch("/:id", auth, async (req, res) => {
-//   const project = await Project.findById(req.params.id);
-
-//   if (!project) return res.status(404).send("Project not found...");
-
-//   if (project.uid !== req.user._id)
-//     return res.status(401).send("Project check/uncheck failed. Not authorized");
-
-//   const updatedProject = await Project.findByIdAndUpdate(
-//     req.params.id,
-//     {
-//       isComplete: !project.isComplete,
-//     },
-//     {
-//       new: true,
-//     }
-//   );
-
-//   res.send(updatedProject);
-// });
 
 router.delete("/:id", auth, async (req, res) => {
   const project = await Project.findById(req.params.id);

@@ -1,6 +1,5 @@
 const winston = require("winston");
 const auth = require("../middleware/auth");
-const imageHandler = require("../middleware/imageHandling");
 const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
@@ -26,11 +25,27 @@ router.get('/image', async (req, res) => {
   res.sendFile(path.resolve(url));
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const article = await Article.findById(req.params.id);
+
+    if (!article)
+      return res.status(404).send("Article not found...");
+
+    res.send(article);
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+
+    winston.error(error.message);
+  }
+});
+
 router.post("/", auth, async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().min(3).max(200).required(),
     author: Joi.string().min(3),
     uid: Joi.string(),
+    description: Joi.string(),
     body: Joi.string().required(),
     image: Joi.string(),
     date: Joi.date(),
@@ -42,12 +57,9 @@ router.post("/", auth, async (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  const { name, author, body, date, uid } = req.body;
+  const { name, author, description, image, body, date, uid } = req.body;
 
-  // Handle the image using the ../middleware/imageHandling.js middleware
-  const image = imageHandler(req.body.image);
-
-  let article = new Article({ name, author, body, image, date, uid });
+  let article = new Article({ name, author, description, body, image, date, uid });
 
   article = await article.save();
   res.send(article);
@@ -58,6 +70,7 @@ router.put("/:id", auth, async (req, res) => {
     name: Joi.string().min(3).required(),
     author: Joi.string().min(3),
     uid: Joi.string(),
+    description: Joi.string(),
     body: Joi.string(),
     image: Joi.string(),
     date: Joi.date(),
@@ -78,37 +91,16 @@ router.put("/:id", auth, async (req, res) => {
   if (article.uid !== req.user._id)
     return res.status(401).send("Article update failed. Not authorized");
 
-  const { name, author, body, image, date, uid } = req.body;
+  const { name, author, description, body, image, date, uid } = req.body;
 
   const updatedArticle = await Article.findByIdAndUpdate(
     req.params.id,
-    { name, author, body, date, image, uid },
+    { name, author, description, body, date, image, uid },
     { new: true }
   );
 
   res.send(updatedArticle);
 });
-
-// router.patch("/:id", auth, async (req, res) => {
-//   const article = await Article.findById(req.params.id);
-
-//   if (!article) return res.status(404).send("Article not found...");
-
-//   if (article.uid !== req.user._id)
-//     return res.status(401).send("Article check/uncheck failed. Not authorized");
-
-//   const updatedArticle = await Article.findByIdAndUpdate(
-//     req.params.id,
-//     {
-//       : !article.isComplete,
-//     },
-//     {
-//       new: true,
-//     }
-//   );
-
-//   res.send(updatedArticle);
-// });
 
 router.delete("/:id", auth, async (req, res) => {
   const article = await Article.findById(req.params.id);
