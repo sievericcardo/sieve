@@ -45,7 +45,7 @@ const ListArticles = ({ setArticle }) => {
   return (
     <>
       <Root className={classes.articleStyle}>
-        <Typography variant="h5">
+        <Typography variant="h3">
           {length > 0 ? "My writeups" : "No writeup yet"}
         </Typography>
         {articles &&

@@ -17,16 +17,6 @@ const classes = {
 
 const AddArticle = ({ article, setArticle }) => {
 
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,27 +27,21 @@ const AddArticle = ({ article, setArticle }) => {
         name: article.name,
         description: article.description,
         body: unescape(encodeURIComponent(article.body)),
+        image: article.image,
         date: article.date,
         author: "Riccardo",
       };
 
       updateArticle(updatedArticle, id);
     } else {
-      var file = article.image;
-
       article.body = unescape(encodeURIComponent(article.body));
 
-      getBase64(file).then (
-        data => {
-          const newArticle = {
-            ...article,
-            image: data,
-            date: new Date(),
-          };
-    
-          addArticle(newArticle);
-        }
-      );
+      const newArticle = {
+        ...article,
+        date: new Date(),
+      };
+
+      addArticle(newArticle);
     }
 
     setArticle({
@@ -87,6 +71,17 @@ const AddArticle = ({ article, setArticle }) => {
           style={{ marginBottom: "15px" }}
         />
         <TextField 
+          id="article-image"
+          aria-label="minimum height"
+          minRows={1}
+          label="Writeup image"
+          variant="outlined"
+          fullWidth
+          value={article.image}
+          onChange={(e) => setArticle({ ...article, image: e.target.value })}
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField 
           id="article-description"
           aria-label="minimum height"
           minRows={1}
@@ -108,14 +103,6 @@ const AddArticle = ({ article, setArticle }) => {
           onChange={(e) => setArticle({ ...article, body: e.target.value })}
           style={{ marginBottom: "15px" }}
         />
-        <input
-          type="file"
-          id="uploading"
-          name="uploading"
-          accept="image/webp"
-          className={ classes.imageUpload }
-          onChange={(e) => setArticle({ ...article, image: e.target.files[0] })}
-        />
         <Button
           className={ classes.submitButton }
           color="primary"
@@ -123,7 +110,7 @@ const AddArticle = ({ article, setArticle }) => {
           type="submit"
           style={{ borderRadius: "18px" }}
         >
-          <Send />
+          Send &nbsp; <Send />
         </Button>
       </form>
     </>

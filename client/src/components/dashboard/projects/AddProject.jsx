@@ -13,16 +13,6 @@ const classes = {
 
 const AddProject = ({ project, setProject }) => {
 
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,28 +23,22 @@ const AddProject = ({ project, setProject }) => {
         name: project.name,
         body: unescape(encodeURIComponent(project.body)),
         description: project.description,
+        image: project.image,
         date: project.date,
         author: "Riccardo",
       };
 
       updateProject(updatedProject, id);
     } else {
-      var file = project.image;
 
       project.body = unescape(encodeURIComponent(project.body));
 
-      getBase64(file).then (
-        data => {
-          const newProject = {
-            ...project,
-            image: data,
-            date: new Date(),
-          };
-    
-          console.log(newProject);
-          addProject(newProject);
-        }
-      );
+      const newProject = {
+        ...project,
+        date: new Date(),
+      };
+
+      addProject(newProject);
     }
 
     setProject({
@@ -85,6 +69,17 @@ const AddProject = ({ project, setProject }) => {
           style={{ marginBottom: "15px" }}
         />
         <TextField 
+          id="project-image"
+          aria-label="minimum height"
+          minRows={4}
+          label="Project image"
+          variant="outlined"
+          fullWidth
+          value={project.image}
+          onChange={(e) => setProject({ ...project, image: e.target.value })}
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField 
           id="project-desc"
           aria-label="minimum height"
           minRows={1}
@@ -106,14 +101,6 @@ const AddProject = ({ project, setProject }) => {
           onChange={(e) => setProject({ ...project, body: e.target.value })}
           style={{ marginBottom: "15px" }}
         />
-        <input
-          type="file"
-          id="uploading"
-          name="uploading"
-          accept="image/webp,image/jpg,image/jpeg,image/png"
-          className={ classes.imageUpload }
-          onChange={(e) => setProject({ ...project, image: e.target.files[0] })}
-        />
         <Button
           className={ classes.submitButton }
           color="primary"
@@ -121,7 +108,7 @@ const AddProject = ({ project, setProject }) => {
           type="submit"
           style={{ borderRadius: "18px" }}
         >
-          <Send />
+          Send &nbsp; <Send />
         </Button>
       </form>
     </>

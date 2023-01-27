@@ -45,7 +45,7 @@ const ListMedias = ({ setMedia }) => {
   return (
     <>
       <Root className={classes.mediaStyle}>
-        <Typography variant="h5">
+        <Typography variant="h3">
           {length > 0 ? "My medias" : "No media yet"}
         </Typography>
         {medias &&

@@ -45,7 +45,7 @@ const ListProjects = ({ project, setProject }) => {
   return (
     <>
       <Root className={classes.projectStyle}>
-        <Typography variant="h5">
+        <Typography variant="h3">
           {length > 0 ? "My projects" : "No project yet"}
         </Typography>
         {projects &&

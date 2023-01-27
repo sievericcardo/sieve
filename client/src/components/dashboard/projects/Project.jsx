@@ -63,7 +63,7 @@ const Project = ({ project, setProject, projects }) => {
     <>
       <Root className={classes.projectStyles}>
         <div>
-          <Typography variant="subtitle1">{project.name}</Typography>
+          <Typography variant="h4">{project.name}</Typography>
           <Typography variant="body2" className={classes.greyStyle}>
             Text: {project.body}
           </Typography>
