@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { styled } from "@mui/material/styles";
 import {
-  ImageList
+  ImageList,
+  useMediaQuery,
 } from "@mui/material";
 
 import Article from './Article';
@@ -47,6 +48,8 @@ const ListArticles = () => {
     description: "",
     author: "Riccardo"
   });
+  const small = useMediaQuery('(max-width:600px)');
+  const large = useMediaQuery('(min-width:1000px)');
 
   // Use Effect will be called when our components renders
   useEffect(() => {
@@ -67,7 +70,10 @@ const ListArticles = () => {
   return (
     <Root className={classes.root}>
     {length > 0 ? (
-      <ImageList className={classes.imageList} cols={2.5}>
+      <ImageList 
+        className={classes.imageList}
+        cols={large ? 5 : (small ? 1 : 2)}
+      >
         {articles &&
           articles.map((article) => {
             return (

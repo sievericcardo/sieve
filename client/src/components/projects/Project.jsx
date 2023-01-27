@@ -42,7 +42,7 @@ const  Project = ({ project }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" navigate>
+        <Button size="small">
           <Link to={projectUrl}>
             Learn More
           </Link>

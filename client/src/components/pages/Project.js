@@ -12,6 +12,9 @@ const Root = styled('div')({
   marginTop: '1.4rem',
   marginBottom: '1rem',
   padding: '1rem',
+  width: '80vw',
+  marginLeft: 'auto',
+  marginRight: 'auto',
 });
 
 const Project = () => {

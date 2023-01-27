@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Grid } from '@mui/material';
+import { Grid, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Project from './Project';
@@ -26,6 +26,7 @@ const Root = styled('div')(({ theme }) => ({
 
 const ListProjects = () => {
   const [ projects, setProjects ] = useState();
+  const large = useMediaQuery('(min-width:1000px)');
 
   var length = 0;
 
@@ -46,11 +47,11 @@ const ListProjects = () => {
   return (
     <Root className={classes.root}>
     {length > 0 ? (
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {projects &&
           projects.map((project) => {
             return (
-              <Grid item xs={2}>
+              <Grid item xs={12} md={large ? 2 : 4} sm={6} key={project._id}>
                 <Project
                   project={project}
                   key={project._id}

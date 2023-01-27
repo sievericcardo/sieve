@@ -14,6 +14,9 @@ import {
   Avatar,
   IconButton,
   Typography,
+  Menu,
+  MenuItem,
+  Link
 } from '@mui/material';
 import { red } from '@mui/material/colors';
 import {
@@ -67,11 +70,23 @@ const Root = styled(Card)(({ theme }) => ({
 const  Article = ({ article }) => {
   const [expanded, setExpanded] = React.useState(false);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const ITEM_HEIGHT = 48;
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const imageUrl = `${url}/articles/image?path=${article.image}`
+  const articleUrl = `/article/${article._id}`
 
   return (
     <Root className={classes.root} sx={{ maxWidth: 345 }}>
@@ -83,9 +98,37 @@ const  Article = ({ article }) => {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <div>
+            <IconButton
+              aria-label="more"
+              id="long-button"
+              aria-controls={open ? 'long-menu' : undefined}
+              aria-expanded={open ? 'true' : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="long-menu"
+              MenuListProps={{
+                'aria-labelledby': 'long-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: '20ch',
+                },
+              }}
+            >
+              <MenuItem key={`view_${article._id}`}>
+                <Link href={articleUrl}>View</Link>
+              </MenuItem>
+            </Menu>
+          </div>
         }
         title={article.name}
         subheader={moment(article.date).fromNow()}
