@@ -4,7 +4,6 @@ import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Project from './Project';
-// import { getProjects } from '../../store/actions/projectActions';
 import { getProjects } from '../../hooks/projectHooks';
 
 const PREFIX = 'ListProjects';

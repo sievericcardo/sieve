@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import { Typography, Button, ButtonGroup } from '@mui/material';
 import { Create, Delete, CheckCircle } from '@mui/icons-material';
@@ -7,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 import moment from "moment";
 
-import { checkMedia, deleteMedia } from "../../../store/actions/mediaActions";
+import { deleteMedia, updateMedia } from "../../../hooks/mediaHooks";
 
 const PREFIX = "DashboardMedia";
 const classes = {
@@ -40,7 +39,6 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const Media = ({ media, setMedia }) => {
-  const dispatch = useDispatch();
 
   const handleUpdateClick = () => {
     setMedia(media); // Using the media passed as prop from the list to do
@@ -53,11 +51,11 @@ const Media = ({ media, setMedia }) => {
   };
 
   const handleCheck = (id) => {
-    dispatch(checkMedia(id));
+    updateMedia(id);
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteMedia(id));
+    deleteMedia(id);
   };
 
   return (

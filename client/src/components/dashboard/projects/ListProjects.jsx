@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import Project from "./Project";
-import { getProjects } from "../../../store/actions/projectActions";
+import { getProjects } from "../../../hooks/projectHooks";
 
 const PREFIX = "DashboardListProjects";
 const classes = {
@@ -25,15 +24,17 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const ListProjects = ({ project, setProject }) => {
-  const projects = useSelector((state) => state.projects);
-  const dispatch = useDispatch();
+  const [projects, setProjects] = useState();
 
   var length = 0
 
   // Use Effect will be called when our components renders
   useEffect(() => {
-    dispatch(getProjects());
-  }, [dispatch]); // this is to avoid it making continually rendering
+    getProjects().then((data) => {
+      setProjects(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   if (!projects) {
     length = 0

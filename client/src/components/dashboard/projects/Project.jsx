@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import { Typography, Button, ButtonGroup } from '@mui/material';
 import { Create, Delete, CheckCircle } from '@mui/icons-material';
@@ -7,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 import moment from "moment";
 
-import { checkProject, deleteProject } from "../../../store/actions/projectActions";
+import { updateProject, deleteProject } from "../../../hooks/projectHooks";
 
 const PREFIX = "DashboardProject";
 const classes = {
@@ -40,7 +39,6 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const Project = ({ project, setProject, projects }) => {
-  const dispatch = useDispatch();
 
   const handleUpdateClick = (id) => {
     const foundProject = projects.find((project) => project._id === id);
@@ -54,11 +52,11 @@ const Project = ({ project, setProject, projects }) => {
   };
 
   const handleCheck = (id) => {
-    dispatch(checkProject(id));
+    updateProject(id);
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteProject(id));
+    deleteProject(id);
   };
 
   return (

@@ -1,11 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import { TextField, Button } from '@mui/material';
 import { Send } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
-import { addMedia, updateMedia } from "../../../store/actions/mediaActions";
+import { addMedia, updateMedia } from "../../../hooks/mediaHooks";
 
 const PREFIX = "DashboardAddMedia";
 
@@ -37,7 +36,6 @@ const Root = styled("form")(({ theme }) => ({
 }));
 
 const AddMedia = ({ media, setMedia }) => {
-  const dispatch = useDispatch();
 
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -62,7 +60,7 @@ const AddMedia = ({ media, setMedia }) => {
         author: "Riccardo",
       };
 
-      dispatch(updateMedia(updatedMedia, id));
+      updateMedia(updatedMedia, id);
     } else {
       var file = media.image;
 
@@ -74,7 +72,7 @@ const AddMedia = ({ media, setMedia }) => {
             date: new Date(),
           };
     
-          dispatch(addMedia(newMedia));
+          addMedia(newMedia);
         }
       );
     }

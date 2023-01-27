@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Media from "./Media";
-import { getMedias } from "../../../store/actions/mediaActions";
+import { getMedias } from "../../../hooks/mediaHooks";
 
 const PREFIX = "DashboardListMedias";
 const classes = {
@@ -25,21 +24,23 @@ const Root = styled("div")(({ theme }) => ({
 }));
 
 const ListMedias = ({ setMedia }) => {
-  const dispatch = useDispatch();
-  const medias = useSelector((state) => state.medias);
+  const [medias, setMedias] = useState();
 
   var length = 0;
+
+  // Use Effect will be called when our components renders
+  useEffect(() => {
+    getMedias().then((data) => {
+      setMedias(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!medias) {
     length = 0
   } else {
     length = medias.length
   }
-
-  // Use Effect will be called when our components renders
-  useEffect(() => {
-    dispatch(getMedias());
-  }, [dispatch]); // this is to avoid it making continually rendering
 
   return (
     <>

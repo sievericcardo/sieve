@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 
-import AddMedia from '../medias/AddMedia';
-import ListMedias from '../medias/ListMedias';
+import AddMedia from './AddMedia';
+import ListMedias from './ListMedias';
 
 const ManageMedias = () => {
-    const auth = useSelector(state => state.auth);
 
     const [ media, setMedia ] = useState({
         altText: "",
     });
-
-    // if(!auth._id) {
-    //     return <Navigate to="/signin" />
-    // }
 
     return (
         <>
