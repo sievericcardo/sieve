@@ -3,7 +3,6 @@ import React from "react";
 import { TextField, Button } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
-// import { addProject, updateProject } from "../../../store/actions/projectActions";
 import { addProject, updateProject } from "../../../hooks/projectHooks";
 
 const PREFIX = "DashboardAddProject";
@@ -13,7 +12,6 @@ const classes = {
 };
 
 const AddProject = ({ project, setProject }) => {
-  // const dispatch = useDispatch();
 
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -33,16 +31,17 @@ const AddProject = ({ project, setProject }) => {
 
       const updatedProject = {
         name: project.name,
-        body: project.body,
+        body: unescape(encodeURIComponent(project.body)),
         description: project.description,
         date: project.date,
         author: "Riccardo",
       };
 
       updateProject(updatedProject, id);
-      // dispatch(updateProject(updatedProject, id));
     } else {
       var file = project.image;
+
+      project.body = unescape(encodeURIComponent(project.body));
 
       getBase64(file).then (
         data => {
@@ -54,7 +53,6 @@ const AddProject = ({ project, setProject }) => {
     
           console.log(newProject);
           addProject(newProject);
-          // dispatch(addProject(newProject));
         }
       );
     }
