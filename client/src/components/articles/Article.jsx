@@ -99,7 +99,7 @@ const  Article = ({ article }) => {
       />
       <CardContent className={ classes.text }>
         <Typography variant="body2" component="p" sx={{ color: 'white' }}>
-          { article.body.substring(0, "50") }...
+          { article.description.substring(0, "50") }...
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -116,7 +116,7 @@ const  Article = ({ article }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={ classes.text }>
-          <Typography paragraph sx={{ color: 'white' }}>{ article.body }</Typography>
+          <Typography paragraph sx={{ color: 'white' }}>{ article.description }</Typography>
         </CardContent>
       </Collapse>
     </Root>
