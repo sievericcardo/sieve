@@ -35,7 +35,8 @@ const AddArticle = ({ article, setArticle }) => {
 
       const updatedArticle = {
         name: article.name,
-        body: article.body,
+        description: article.description,
+        body: unescape(encodeURIComponent(article.body)),
         date: article.date,
         author: "Riccardo",
       };
@@ -43,6 +44,8 @@ const AddArticle = ({ article, setArticle }) => {
       updateArticle(updatedArticle, id);
     } else {
       var file = article.image;
+
+      article.body = unescape(encodeURIComponent(article.body));
 
       getBase64(file).then (
         data => {
@@ -81,6 +84,17 @@ const AddArticle = ({ article, setArticle }) => {
           fullWidth
           value={article.name}
           onChange={(e) => setArticle({ ...article, name: e.target.value })}
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField 
+          id="article-description"
+          aria-label="minimum height"
+          minRows={1}
+          label="Writeup description"
+          variant="outlined"
+          fullWidth
+          value={article.description}
+          onChange={(e) => setArticle({ ...article, description: e.target.value })}
           style={{ marginBottom: "15px" }}
         />
         <TextField 
