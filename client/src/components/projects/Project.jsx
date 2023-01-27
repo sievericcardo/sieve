@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import {
   Typography,
   Card,
@@ -21,6 +23,7 @@ const Root = styled(Card)({
 
 const  Project = ({ project }) => {
   const imageUrl = `${url}/projects/image?path=${project.image}`
+  const projectUrl = `/project/${project._id}`
 
   return (
     <Root sx={{ maxWidth: 345 }}>
@@ -39,7 +42,11 @@ const  Project = ({ project }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" navigate>
+          <Link to={projectUrl}>
+            Learn More
+          </Link>
+        </Button>
       </CardActions>
     </Root>
   );
