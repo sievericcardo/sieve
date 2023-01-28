@@ -109,6 +109,7 @@ const AddMedia = ({ media, setMedia }) => {
           accept="image/webp"
           className={ classes.imageUpload }
           onChange={(e) => setMedia({ ...media, image: e.target.files[0] })}
+          style={{ margin: "0.2em", padding: "0.2em" }}
         />
         <Button
           className={ classes.submitButton }

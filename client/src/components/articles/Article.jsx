@@ -125,7 +125,7 @@ const  Article = ({ article }) => {
               }}
             >
               <MenuItem key={`view_${article._id}`}>
-                <Link href={articleUrl}>View</Link>
+                <Link href={articleUrl}>View More</Link>
               </MenuItem>
             </Menu>
           </div>

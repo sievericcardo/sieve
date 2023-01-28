@@ -73,7 +73,6 @@ const AddArticle = ({ article, setArticle }) => {
         <TextField 
           id="article-image"
           aria-label="minimum height"
-          minRows={1}
           label="Writeup image"
           variant="outlined"
           fullWidth
@@ -88,6 +87,7 @@ const AddArticle = ({ article, setArticle }) => {
           label="Writeup description"
           variant="outlined"
           fullWidth
+          multiline
           value={article.description}
           onChange={(e) => setArticle({ ...article, description: e.target.value })}
           style={{ marginBottom: "15px" }}
@@ -95,10 +95,11 @@ const AddArticle = ({ article, setArticle }) => {
         <TextField 
           id="article-body"
           aria-label="minimum height"
-          minRows={1}
+          minRows={4}
           label="Writeup body"
           variant="outlined"
           fullWidth
+          multiline
           value={article.body}
           onChange={(e) => setArticle({ ...article, body: e.target.value })}
           style={{ marginBottom: "15px" }}

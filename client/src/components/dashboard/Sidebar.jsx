@@ -106,7 +106,7 @@ const Sidebar = () => {
           </IconButton>
           <img src={logo} className='navLogo' alt="Logo" />
           <Typography variant="h4" className='navRoot'>
-            <Link className='navLinkStyle' to="/">
+            <Link className='navLinkStyle' href="/">
               <span className='navTitle'>Sieve</span>
             </Link>
           </Typography>

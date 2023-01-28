@@ -31,9 +31,6 @@ const Article = () => {
   return (
     <Root>
       <Typography variant="h4"><AllInclusive /> {article.name}</Typography>
-      <Typography variant="body2">
-        {article.body}
-      </Typography>
       <ReactMarkdown>{ decodeURIComponent(escape(article.body)) }</ReactMarkdown>
     </Root>
   );

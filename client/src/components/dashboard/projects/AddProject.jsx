@@ -71,7 +71,6 @@ const AddProject = ({ project, setProject }) => {
         <TextField 
           id="project-image"
           aria-label="minimum height"
-          minRows={4}
           label="Project image"
           variant="outlined"
           fullWidth
@@ -86,6 +85,7 @@ const AddProject = ({ project, setProject }) => {
           label="Project description"
           variant="outlined"
           fullWidth
+          multiline
           value={project.description}
           onChange={(e) => setProject({ ...project, description: e.target.value })}
           style={{ marginBottom: "15px" }}
@@ -97,6 +97,7 @@ const AddProject = ({ project, setProject }) => {
           label="Project body"
           variant="outlined"
           fullWidth
+          multiline
           value={project.body}
           onChange={(e) => setProject({ ...project, body: e.target.value })}
           style={{ marginBottom: "15px" }}
