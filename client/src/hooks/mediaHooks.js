@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { url } from "../api/index";
+import { url, setHeaders } from "../api/index";
 
 export const getMedias = async () => {
   try {
@@ -28,8 +28,14 @@ export const addMedia = async (media) => {
   try {
     await axios.post(
       `${url}/medias`,
-      media
-    );
+      media,
+      setHeaders(),
+    )
+    .then (() => {
+      toast.success("Media added successfully", {
+        position: toast.POSITION.BOTTOM_RIGHT
+        });
+    });
     return true;
   } catch (error) {
     toast.error(error.response?.data, {
@@ -42,7 +48,8 @@ export const updateMedia = async (updatedMedia, id) => {
   try {
     const media = await axios.put(
       `${url}/medias/${id}`,
-      updatedMedia
+      updatedMedia,
+      setHeaders(),
     )
     .then (() => {
       toast.success("Media updated successfully", {
@@ -60,7 +67,8 @@ export const updateMedia = async (updatedMedia, id) => {
 export const deleteMedia = async (id) => {
   try {
     await axios.delete(
-      `${url}/medias/${id}`
+      `${url}/medias/${id}`,
+      setHeaders()
     )
     .then (() => {
       toast.success("Media deleted successfully", {

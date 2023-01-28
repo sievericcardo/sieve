@@ -69,6 +69,7 @@ const AddMedia = ({ media, setMedia }) => {
           const newMedia = {
             ...media,
             image: data,
+            author: "Riccardo",
             date: new Date(),
           };
     
@@ -79,6 +80,7 @@ const AddMedia = ({ media, setMedia }) => {
 
     setMedia({
       alt: "",
+      author: "Riccardo",
     });
   };
 

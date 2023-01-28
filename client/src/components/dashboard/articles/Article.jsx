@@ -64,7 +64,7 @@ const Article = ({ article, setArticle }) => {
         <div>
           <Typography variant="h4">{article.name}</Typography>
           <Typography variant="body2" className={classes.greyStyle}>
-            Text: {article.body}
+            Text: {article.description}
           </Typography>
           <Typography variant="body2" className={classes.greyStyle}>
             Added: {moment(article.date).fromNow()}

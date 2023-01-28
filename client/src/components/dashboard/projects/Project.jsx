@@ -65,7 +65,7 @@ const Project = ({ project, setProject, projects }) => {
         <div>
           <Typography variant="h4">{project.name}</Typography>
           <Typography variant="body2" className={classes.greyStyle}>
-            Text: {project.body}
+            Text: {project.description}
           </Typography>
           <Typography variant="body2" className={classes.greyStyle}>
             Added: {moment(project.date).fromNow()}
