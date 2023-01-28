@@ -1,21 +1,25 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles({
-  flexContainer: {
+const PREFIX = 'Projects';
+const classes = {
+  flexContainer: `${PREFIX}-flexContainer`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.flexContainer}`]: {
     display: 'flex',
     height: '600px',
     flexWrap: 'wrap',
     alignContent: 'flex-start',
   }
-});
+}));
 
 const Projects = () => {
-  const classes = useStyles();
 
   return (
-    <div className={ classes.flexContainer }></div>
+    <Root className={ classes.flexContainer }></Root>
   );
 }
 

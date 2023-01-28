@@ -1,22 +1,42 @@
 import React, { useState } from 'react';
 
-import { makeStyles } from '@material-ui/core';
+import {
+  Drawer,
+  List,
+  Divider,
+  IconButton,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  Link,
+} from '@mui/material';
+import MuiAppBar from '@mui/material/AppBar';
+import {
+  Menu as MenuIcon,
+  Architecture as ArchitectureIcon
+} from '@mui/icons-material';
+import { styled, useTheme } from '@mui/material/styles'; 
 
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  mainListItems,
+  secondaryListItems,
+  mainListItemsMobile,
+  secondaryListItemsMobile
+} from './listItems';
 
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 
-import { mainListItems, secondaryListItems } from './listItems';
+const drawerWidth = 250;
 
-import clsx from 'clsx';
+const PREFIX = 'Sidebar';
+const classes = {
+  drawerPaper: `${PREFIX}-drawerPaper`,
+  drawerPaperClose: `${PREFIX}-drawerPaperClose`,
+  sideBar: `${PREFIX}-sideBar`,
+};
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  drawerPaper: {
+const Root = styled(Drawer)(({ theme }) => ({
+  [`&.${classes.drawerPaper}`]: {
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -25,14 +45,14 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerPaperClose: {
+  [`&.${classes.drawerPaperClose}`]: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  sideBar: {
+  [`&.${classes.sideBar}`]: {
     maxWidth: '20vw',
     position: 'absolute',
     left: 0,
@@ -41,37 +61,91 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Sidebar = () => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(true);
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100%)`,
+    paddingLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+  [theme.breakpoints.down('md')]: {
+    paddingLeft: '85px',
+    width: 'calc(100% - 20px)',
+  },
+  [theme.breakpoints.down('sm')]: {
+    paddingLeft: '85px',
+    width: `calc(100% - 15px)`,
+  }
+}));
 
-  // const handleDrawerOpen = () => {
-  //   setOpen(true);
-  // };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+
+const Sidebar = () => {
+  const [open] = useState(true);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <div className={ classes.sideBar }>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={ open }
-      >
-        <div className={ classes.toolbarIcon }>
-          <IconButton onClick={ handleDrawerClose }>
-            <ChevronLeftIcon />
+    <>
+      <AppBar position="fixed" open={open} color="secondary">
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          >
+            <MenuIcon />
           </IconButton>
+          <img src={logo} className='navLogo' alt="Logo" />
+          <Typography variant="h4" className='navRoot'>
+            <Link className='navLinkStyle' href="/">
+              <span className='navTitle'>Sieve</span>
+            </Link>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Root className={ classes.sideBar }
+        sx={{
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            maxWidth: drawerWidth,
+            boxSizing: 'border-box',
+            paddingLeft: '10px',
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+        open={ open }
+        style={{ maxWidth: drawerWidth }}
+      >
+        <div style={{ padding: '15px' }}>
+          <ArchitectureIcon className='navIcon' fontSize="large" />
         </div>
-        <Divider />
-        <List>{ mainListItems}</List>
-        <Divider />
-        <List>{ secondaryListItems}</List>
-      </Drawer>
-    </div>
+        {!isMobile ? (
+          <>
+            <Divider />
+            <List>{mainListItems}</List>
+            <Divider />
+            <List>{secondaryListItems}</List>
+          </>
+        ) : (
+          <>
+            <Divider />
+            <List>{ mainListItemsMobile }</List>
+            <Divider />
+            <List>{ secondaryListItemsMobile }</List>
+          </>
+        )}
+      </Root>
+    </>
   )
 }
 

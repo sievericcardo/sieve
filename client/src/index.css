@@ -11,3 +11,142 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.marginBlocks {
+  margin-bottom: "20px";
+}
+
+.textArea {
+  width: "25vw";
+  height: "15vh";
+}
+
+.submitButton {
+  margin-left: "20px";
+}
+
+.greyStyle {
+  color: "#010!important";
+}
+
+.isComplete {
+  color: "green";
+}
+
+.checked {
+  text-decoration: "line-through";
+}
+
+#footer {
+  position: 'relative';
+  width: '100vw';
+  background-color: '#161616';
+  color: '#fff!important';
+  margin: '50px 0 0 0';
+  padding: '0px 20px 30px 0';
+}
+
+/*================= NAVBAR ==================*/
+.navRoot {
+  flex-grow: 1;
+}
+
+.navLinkStyle {
+  color: #fafafa;
+  text-decoration: none;
+  margin: 3px;
+  padding: 3px;
+}
+
+.navLogo {
+  width: 30px;
+  height: "auto";
+  margin-right: "20px";
+}
+
+.navTitle {
+  font-family: "WindSong";
+  color: #fff;
+  text-decoration: none;
+  margin: 3px;
+  padding: 3px;
+}
+
+.navbar {
+  z-index: 9999;
+  padding: 0!important;
+}
+
+/*================= HOME ==================*/
+.content {
+  flex-grow: 1;
+  height: 100vh;
+  overflow: auto;
+}
+
+.container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 80vw;
+  margin-top: 2vw;
+  margin-left: 15vw;
+  margin-right: 5vw;
+}
+
+.paper {
+  padding: 20px;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.fixedHeight {
+  height: 240px;
+}
+
+.homeMainContent {
+  position: relative;
+  clear: all;
+  margin-top: 5vh;
+  width: 80vw;
+  margin: auto;
+}
+
+.homeTitle {
+  font-size: 3.1em!important;
+  margin-bottom: 1em!important;
+  margin-top: 1em!important;
+}
+
+.homeSubTitle {
+  font-size: 2.1em!important;
+  margin-bottom: 1em!important;
+}
+
+.subTitle {
+  border-bottom: 3px solid black;
+  font-size: 2.3em!important;
+  margin-bottom: 0.5em!important;
+  margin-top: 1.2em!important;
+  padding: 15px!important;
+  text-align: center;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 1.2em;
+  margin: auto;
+  justify-content: center;
+  box-sizing: content-box;
+}
+
+.icon {
+  color: #000;
+  padding: 5px;
+  margin: 3px;
+  width: 3em;
+  height: 3em;
+}

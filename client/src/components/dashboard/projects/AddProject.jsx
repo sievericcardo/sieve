@@ -1,31 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-import { TextField, Button } from "@material-ui/core";
-import { Send } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { TextField, Button } from "@mui/material";
+import { Send } from "@mui/icons-material";
 
-import { addProject, updateProject } from "../../../store/actions/projectActions";
+import { addProject, updateProject } from "../../../hooks/projectHooks";
 
-const useStyles = makeStyles({
-  formStyle: {
-    maxWidth: "70vw",
-    margin: "0px auto",
-    padding: "30px",
-    borderRadius: "9px",
-    boxShadow: "0px 0px 12px -3px #000",
-    display: "flex",
-    justifyContent: "space-between",
-    backgroundColor: '#fff',
-  },
-  submitButton: {
-    marginLeft: "20px",
-  },
-});
+const PREFIX = "DashboardAddProject";
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  submitButton: `${PREFIX}-submitButton`,
+};
 
 const AddProject = ({ project, setProject }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,24 +21,30 @@ const AddProject = ({ project, setProject }) => {
 
       const updatedProject = {
         name: project.name,
-        body: project.body,
+        body: unescape(encodeURIComponent(project.body)),
+        description: project.description,
+        image: project.image,
         date: project.date,
         author: "Riccardo",
       };
 
-      dispatch(updateProject(updatedProject, id));
+      updateProject(updatedProject, id);
     } else {
+
+      project.body = unescape(encodeURIComponent(project.body));
+
       const newProject = {
         ...project,
         date: new Date(),
       };
 
-      dispatch(addProject(newProject));
+      addProject(newProject);
     }
 
     setProject({
       name: "",
       body: "",
+      author: "Riccardo"
     });
   };
 
@@ -61,8 +53,10 @@ const AddProject = ({ project, setProject }) => {
       <form
         noValidate
         autoComplete="off"
-        className={classes.formStyle}
+        className={ classes.formStyle }
+        encType='multipart/form-data'
         onSubmit={ handleSubmit }
+        style={{ marginBottom: "30px" }}
       >
         <TextField
           id="enter-project"
@@ -72,24 +66,50 @@ const AddProject = ({ project, setProject }) => {
           fullWidth
           value={project.name}
           onChange={(e) => setProject({ ...project, name: e.target.value })}
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField 
+          id="project-image"
+          aria-label="minimum height"
+          label="Project image"
+          variant="outlined"
+          fullWidth
+          value={project.image}
+          onChange={(e) => setProject({ ...project, image: e.target.value })}
+          style={{ marginBottom: "15px" }}
+        />
+        <TextField 
+          id="project-desc"
+          aria-label="minimum height"
+          minRows={1}
+          label="Project description"
+          variant="outlined"
+          fullWidth
+          multiline
+          value={project.description}
+          onChange={(e) => setProject({ ...project, description: e.target.value })}
+          style={{ marginBottom: "15px" }}
         />
         <TextField 
           id="project-body"
           aria-label="minimum height"
-          minRows={1}
+          minRows={4}
           label="Project body"
           variant="outlined"
           fullWidth
+          multiline
           value={project.body}
           onChange={(e) => setProject({ ...project, body: e.target.value })}
+          style={{ marginBottom: "15px" }}
         />
         <Button
-          className={classes.submitButton}
+          className={ classes.submitButton }
           color="primary"
           variant="contained"
           type="submit"
+          style={{ borderRadius: "18px" }}
         >
-          <Send />
+          Send &nbsp; <Send />
         </Button>
       </form>
     </>

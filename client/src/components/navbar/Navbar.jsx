@@ -1,76 +1,93 @@
 import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles"; // for custom css
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { signOut } from "../../store/actions/authActions";
+const PREFIX = "Navbar";
+const classes = {
+  root: `${PREFIX}-root`,
+  linkStyle: `${PREFIX}-linkStyle`,
+  logo: `${PREFIX}-logo`,
+  title: `${PREFIX}-title`,
+  navbar: `${PREFIX}-navbar`,
+};
 
-const useStyles = makeStyles({
-  root: {
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.root}`]: {
     flexGrow: 1,
+    padding: "0px!important",
   },
-  linkStyle: {
+  [`&.${classes.linkStyle}`]: {
     color: "#fafafa",
     textDecoration: "none",
     margin: "5px",
     padding: "5px",
   },
-  authButton: {
-    //
+  [`&.${classes.logo}`]: {
+    width: "30px",
+    height: "auto",
+    marginRight: "20px",
   },
-  logo: {
-    width: '30px',
-    marginRight: '20px'
+  [`&.${classes.title}`]: {
+    fontFamily: "WindSong",
   },
-  title: {
-    fontFamily: "WindSong"
+  [`&.${classes.navbar}`]: {
+    zIndex: 9999,
   },
-  navbar: {
-    zIndex: 9999
-  },
-});
+}));
 
 const Navbar = () => {
-  const classes = useStyles();
-  const state = useSelector((state) => state);
-  const auth = useSelector((state) => state.auth);
+  const [ loggedIn, setLoggedIn ] = useState(false);
+  // const state = useSelector((state) => state);
+  // const auth = useSelector((state) => state.auth);
+  const name = localStorage.getItem("user");
 
-  console.log(state);
-
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   const handleSignOut = () => {
     // logout
-    dispatch(signOut());
+    localStorage.clear();
+    setLoggedIn(false);
 
-    history.push("/signin");
+    navigate("/auth/signin");
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
+
   return (
-    <div>
-      <AppBar position="static" color="primary" className={ classes.navbar }>
+    <Root>
+      <AppBar position="static" color="dark" className='navbar'>
         <Toolbar>
-          <img src={logo} className={classes.logo} alt="Logo" />
-          <Typography variant="h4" className={classes.root}>
-            <Link className={ classes.linkStyle } to="/">
-              <span className={ classes.title }>Sieve</span>
+          <img src={logo} className='navLogo' alt="Logo" />
+          <Typography variant="h4" className='navRoot'>
+            <Link className='navLinkStyle' to="/">
+              <span className='navTitle'>Sieve</span>
             </Link>
-            <Button color="inherit">
-            <Link className={classes.linkStyle} to="/writeups">
-              Writeups
-            </Link>
-          </Button>
+            {/* <Button color="inherit">
+              <Link className='navLinkStyle' to="/writeups">
+                Writeups
+              </Link>
+            </Button> */}
           </Typography>
-          {auth._id ? (
+          {loggedIn? (
             <>
-              <Typography variant="subtitle2" className={classes.root}>
-                Logged in as {auth.name}
+              <Button color="inherit">
+                <Link className='navLinkStyle' to="/cms/dashboard">
+                  Backend
+                </Link>
+              </Button>
+              <Typography variant="subtitle2" className='navRoot'>
+                Logged in as {name}
               </Typography>
               <Button color="inherit" onClick={() => handleSignOut()}>
                 Sign Out
@@ -79,7 +96,7 @@ const Navbar = () => {
           ) : (
             <>
               <Button color="inherit">
-                <Link className={classes.linkStyle} to="/signin">
+                <Link className='navLinkStyle' to="/auth/signin">
                   Sign In
                 </Link>
               </Button>
@@ -87,7 +104,7 @@ const Navbar = () => {
           )}
         </Toolbar>
       </AppBar>
-    </div>
+    </Root>
   );
 };
 

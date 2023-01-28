@@ -1,33 +1,49 @@
 import React from 'react';
 import Steg from '../../assets/img/base-img/steghide-is-fun.png';
 
-import { makeStyles } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 
 import Writeups from '../writeups/Writeups';
-const useStyles = makeStyles({
-  mainContent: {
+
+const PREFIX = 'DisplayWriteups';
+const classes = {
+  base: `${PREFIX}-base`,
+  mainContent: `${PREFIX}-mainContent`,
+  imageBanner: `${PREFIX}-imageBanner`,
+  banner: `${PREFIX}-banner`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.base}`]: {
+    position: 'relative',
+    clear: 'all',
+    marginTop: '5vh',
+    width: '80vw',
+    margin: 'auto',
+    textAlign: 'center',
+    display: 'block'
+  },
+  [`&.${classes.mainContent}`]: {
     position: 'relative',
     clear: 'all',
     marginTop: '5vh',
     width: '80vw',
     margin: 'auto',
   },
-  imageBanner: {
+  [`&.${classes.imageBanner}`]: {
     marginTop: '2.4em',
     marginLeft: 'auto',
     marginRight: 'auto',
     textAlign: 'center',
   },
-  banner: {
+  [`&.${classes.banner}`]: {
     maxWidth: '70vw',
-  }
-});
+  },
+}));
 
 const DisplayWriteups = () => {
-  const classes = useStyles();
-
   return (
-    <div className={ classes.base }>
+    <Root className={ classes.base }>
       <div className={ classes.mainContent }>
         <h1>Writeups</h1>
         <p>&nbsp;</p>
@@ -39,7 +55,7 @@ const DisplayWriteups = () => {
           <img className={ classes.banner } src={ Steg } alt="Steganography is fun" />
         </div>
       </div>
-    </div>
+    </Root>
   )
 };
 

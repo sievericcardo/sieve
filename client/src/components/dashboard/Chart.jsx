@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';
 
 import {
   LineChart,

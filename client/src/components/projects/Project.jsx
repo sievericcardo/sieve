@@ -1,28 +1,63 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
 
-import { AllInclusive } from '@material-ui/icons';
+import {
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-import Typography from '@material-ui/core/Typography';
+import { url } from '../../api';
 
-const useStyles = makeStyles({
-  projects: {
-    color: '#000'
-  }
+const Root = styled(Card)({
+  backgroundColor: 'rgba(50, 115, 220, 0.3)',
+  marginTop: '1.4rem',
+  marginBottom: '1rem',
 });
 
-const  Project = ({ project, setProject }) => {
-  const classes = useStyles();
+
+const  Project = ({ project }) => {
+  const imageUrl = `${url}/projects/image?path=${project.image}`
+  const projectUrl = `/project/${project._id}`
 
   return (
-    <div className={ classes.projects }>
+    <Root sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="Project Image"
+        height="140"
+        image={ imageUrl }
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: 'bold' }}>
+          { project.name }
+        </Typography>
+        <Typography variant="body2" color="text.primary">
+          { project.description }
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">
+          <Link to={projectUrl}>
+            Learn More
+          </Link>
+        </Button>
+      </CardActions>
+    </Root>
+  );
+}
+
+    // Old block of code for the project component
+    /* <Root className={ classes.projects }>
       <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
       <Typography variant="body2">
         {project.body}
       </Typography>
-    </div>
-  );
-}
+    </Root> */
 
 export default Project;

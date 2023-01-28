@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Article from "./Article";
-import { getArticles } from "../../../store/actions/articleActions";
+import { getArticles } from "../../../hooks/articleHooks";
 
-const useStyles = makeStyles({
-  articleStyle: {
+const PREFIX = "DashboardListArticles";
+const classes = {
+  articleStyle: `${PREFIX}-articleStyle`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.articleStyle}`]: {
     margin: "20px auto",
     padding: "20px",
     borderRadius: "9px",
@@ -17,14 +21,20 @@ const useStyles = makeStyles({
     color: '#000',
     marginTop: '0.2em',
   },
-});
+}));
 
 const ListArticles = ({ setArticle }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
+  const [articles, setArticles] = useState();
 
   var length = 0;
+
+  // Use Effect will be called when our components renders
+  useEffect(() => {
+    getArticles().then((data) => {
+      setArticles(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!articles) {
     length = 0
@@ -32,16 +42,11 @@ const ListArticles = ({ setArticle }) => {
     length = articles.length
   }
 
-  // Use Effect will be called when our components renders
-  useEffect(() => {
-    dispatch(getArticles());
-  }, [dispatch]); // this is to avoid it making continually rendering
-
   return (
     <>
-      <div className={classes.articleStyle}>
-        <Typography variant="h5">
-          {length > 0 ? "My articles" : "No article yet"}
+      <Root className={classes.articleStyle}>
+        <Typography variant="h3">
+          {length > 0 ? "My writeups" : "No writeup yet"}
         </Typography>
         {articles &&
           articles.map((article) => {
@@ -53,7 +58,7 @@ const ListArticles = ({ setArticle }) => {
               />
             );
           })}
-      </div>
+      </Root>
     </>
   );
 };

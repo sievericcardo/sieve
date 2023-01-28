@@ -1,50 +1,52 @@
 import React from 'react';
 
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { Box, Typography, Link } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-import { makeStyles } from '@material-ui/core';
+const PREFIX = 'Footer';
+const classes = {
+  mainContent: `${PREFIX}-mainContent`,
+  whiteText: `${PREFIX}-whiteText`,
+};
 
-const useStyles = makeStyles({
-  footer: {
-    position: 'relative',
-    width: '100vw',
-    backgroundColor: '#161616',
-    color: '#fff!important',
-    margin: '50px 0 0 0',
-    padding: '0px 20px 30px 0',
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.mainContent}`]: {
+    textAlign: 'center',
+    marginTop: '1.1em',
+    paddingBottom: '1.3em',
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
   },
-  mainContent: {
-    textAlign: "center",
-    marginTop: "1.1em",
+  [`&.${classes.whiteText}`]: {
+    textAlign: 'center',
+    textDecoration: 'none',
+    color: theme.palette.common.white,
   },
-});
+}));
 
 const Copyright = () => {
   return (
-    <Typography variant="h6" color="secondary" align="center">
-      {'Copyright @'}
-      <Link color="inherit" href="/">Sieve</Link>{' '}
-      { new Date().getFullYear() }
-      {'.'}
+    <Typography variant="h6" color="primary" align="center" >
+      <span style={{ fontSize: "1.33em", color: "#fff" }}>
+        {'Copyright @'}
+        <Link color="inherit" href="/">Sieve</Link>{' '}
+        { new Date().getFullYear() }
+        {'.'}
+      </span>
     </Typography>
   )
 };
 
 const Footer = () => {
-  const classes = useStyles();
-
   return (
-    <div className={ classes.mainContent }>
+    <Root className={ classes.mainContent }>
       {/* <img src="https://tryhackme-badges.s3.amazonaws.com/Xelinion.png" alt="TryHackMe" /> */}
-      <div className={ classes.footer }>
-        <script src="https://tryhackme.com/badge/632428"></script>
+      <div id='footer'>
         <Box pt={4}>
-          <Copyright />
+          <Copyright className={ classes.whiteText } />
         </Box>
       </div>
-    </div>
+    </Root>
   );
 }
 

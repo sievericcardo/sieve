@@ -9,7 +9,7 @@ function auth(req, res, next) {
   }
 
   try {
-    const jwtSecretKey = window.process.env.JWT_SECRET_KEY;
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
     const decoded = jwt.verify(token, jwtSecretKey);
 
     req.user = decoded;

@@ -1,16 +1,23 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-import { Typography, Button, ButtonGroup } from "@material-ui/core";
-import { Create, Delete, CheckCircle } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { Typography, Button, ButtonGroup } from '@mui/material';
+import { Create, Delete, CheckCircle } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
 import moment from "moment";
 
-import { checkProject, deleteProject } from "../../../store/actions/projectActions";
+import { updateProject, deleteProject } from "../../../hooks/projectHooks";
 
-const useStyles = makeStyles({
-  projectStyles: {
+const PREFIX = "DashboardProject";
+const classes = {
+  projectStyles: `${PREFIX}-projectStyles`,
+  greyStyle: `${PREFIX}-greyStyle`,
+  isComplete: `${PREFIX}-isComplete`,
+  checked: `${PREFIX}-checked`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.projectStyles}`]: {
     margin: "20px auto",
     padding: "20px",
     border: "2px solid #bdbdbd",
@@ -18,22 +25,20 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     textAlign: "left",
-    color: "#000"
+    color: "#000",
   },
-  greyStyle: {
+  [`&.${classes.greyStyle}`]: {
     color: "#010!important",
   },
-  isComplete: {
+  [`&.${classes.isComplete}`]: {
     color: "green",
   },
-  checked: {
+  [`&.${classes.checked}`]: {
     textDecoration: "line-through",
   },
-});
+}));
 
 const Project = ({ project, setProject, projects }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
   const handleUpdateClick = (id) => {
     const foundProject = projects.find((project) => project._id === id);
@@ -47,20 +52,20 @@ const Project = ({ project, setProject, projects }) => {
   };
 
   const handleCheck = (id) => {
-    dispatch(checkProject(id));
+    updateProject(id);
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteProject(id));
+    deleteProject(id);
   };
 
   return (
     <>
-      <div className={classes.projectStyles}>
+      <Root className={classes.projectStyles}>
         <div>
-          <Typography variant="subtitle1">{project.name}</Typography>
+          <Typography variant="h4">{project.name}</Typography>
           <Typography variant="body2" className={classes.greyStyle}>
-            Text: {project.body}
+            Text: {project.description}
           </Typography>
           <Typography variant="body2" className={classes.greyStyle}>
             Added: {moment(project.date).fromNow()}
@@ -79,7 +84,7 @@ const Project = ({ project, setProject, projects }) => {
             </Button>
           </ButtonGroup>
         </div>
-      </div>
+      </Root>
     </>
   );
 };

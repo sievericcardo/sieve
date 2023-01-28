@@ -28,10 +28,10 @@ router.post("/", async (req, res) => {
     return res.status(400).send("Invalid nickname or password");
   }
 
-  const jwtSecretKey = window.process.env.JWT_SECRET_KEY;
+  const jwtSecretKey = process.env.JWT_SECRET_KEY;
   const token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, jwtSecretKey)
 
-  res.send(token);
+  res.send({ image: user.image, token: token });
 });
 
 module.exports = router;

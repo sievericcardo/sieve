@@ -1,15 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-import { signIn } from "../../store/actions/authActions";
+import { signIn } from '../../hooks/authHooks';
 
-import { Typography, TextField, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
+import {
+  Typography,
+  TextField,
+  Button
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const useStyles = makeStyles({
-  formStyle: {
+const PREFIX = "Login";
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  spacing: `${PREFIX}-spacing`,
+  formTitle: `${PREFIX}-formTitle`,
+};
+
+const Root = styled("div")(({ theme }) => ({
+  [`&.${classes.formStyle}`]: {
     margin: "0px auto",
     padding: "30px",
     borderRadius: "9px",
@@ -17,20 +27,16 @@ const useStyles = makeStyles({
     backgroundColor: "#c6c6c6",
     color: "#000",
   },
-  spacing: {
+  [`&.${classes.spacing}`]: {
     marginTop: "20px",
   },
-  formTitle: {
-      color: "#000"
-  }
-});
+  [`&.${classes.formTitle}`]: {
+    color: "#000",
+  },
+}));
+
 
 const SignIn = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-
-  const auth = useSelector((state) => state.auth);
-
   const [creds, setCreds] = useState({
     name: "",
     password: "",
@@ -39,24 +45,32 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(signIn(creds));
+    const res = signIn(creds);
+
+    if (res) {
+      return <Navigate to = "/cms/dashboard" />
+    }
+
     setCreds({
       name: "",
       password: "",
     });
   };
 
-  if (auth._id) {
-    return <Redirect to="/cms-dashboard" />;
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    return <Navigate to="/cms/dashboard" />;
   }
 
   return (
-    <div className="formContent">
+    <Root className="formContent">
       <form
         className={classes.formStyle}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
+        style={{ maxWidth: "600px", margin: "auto" }}
       >
         <Typography variant="h5" className={ classes.formTitle }>Sign in</Typography>
         <TextField
@@ -67,6 +81,7 @@ const SignIn = () => {
           fullWidth
           value={creds.name}
           onChange={(e) => setCreds({ ...creds, name: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <TextField
           className={classes.spacing}
@@ -77,6 +92,7 @@ const SignIn = () => {
           fullWidth
           value={creds.password}
           onChange={(e) => setCreds({ ...creds, password: e.target.value })}
+          style={{ marginTop: "10px", marginBottom: "10px" }}
         />
         <Button
           className={classes.spacing}
@@ -87,7 +103,7 @@ const SignIn = () => {
           Sign In
         </Button>
       </form>
-    </div>
+    </Root>
   );
 };
 

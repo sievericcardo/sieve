@@ -31,9 +31,18 @@ h4 {
 body {
   overflow-y: overlay;
   min-height: 100vh;
+  width: 100vw;
 }
 
 .MuiCard-root {
     margin-left: 1em;
     margin-right: 1em;
+}
+
+.MuiCardHeader-title {
+  color: #fff!important;
+}
+
+.MuiCardHeader-subheader {
+  color: #fff!important;
 }

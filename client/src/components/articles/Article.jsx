@@ -1,101 +1,151 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 import clsx from 'clsx';
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  Avatar,
+  IconButton,
+  Typography,
+  Menu,
+  MenuItem,
+  Link
+} from '@mui/material';
+import { red } from '@mui/material/colors';
+import {
+  ExpandMore as ExpandMoreIcon,
+  MoreVert as MoreVertIcon,
+} from '@mui/icons-material';
 
 import moment from "moment";
 
 import { url } from '../../api/index';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
+const PREFIX = 'Article';
+const classes = {
+  root: `${PREFIX}-root`,
+  media: `${PREFIX}-media`,
+  expand: `${PREFIX}-expand`,
+  expandOpen: `${PREFIX}-expandOpen`,
+  avatar: `${PREFIX}-avatar`,
+  text: `${PREFIX}-text`,
+}
+
+const Root = styled(Card)(({ theme }) => ({
+  color: '#000',
+  [`&.${classes.root}`]: {
     color: '#000!important',
     backgroundColor: '#726DA8',
-    margin: '1em'
+    margin: '1em',
   },
-  media: {
+  [`&.${classes.media}`]: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  expand: {
+  [`&.${classes.expand}`]: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
   },
-  expandOpen: {
+  [`&.${classes.expandOpen}`]: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
+  [`&.${classes.avatar}`]: {
     backgroundColor: red[500],
   },
-  text: {
+  [`&.${classes.text}`]: {
     color: '#fff!important',
   },
 }));
 
-const  Article = ({ article, setArticle }) => {
-  const classes = useStyles();
+const  Article = ({ article }) => {
   const [expanded, setExpanded] = React.useState(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const ITEM_HEIGHT = 48;
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const imageUrl = `${url}/articles/image?path=${article.image}`
+  const articleUrl = `/article/${article._id}`
 
   return (
-    <Card className={classes.root}>
-      <CardHeader className={ classes.text }
+    <Root className={classes.root} sx={{ maxWidth: 345 }}>
+      <CardHeader
+        className={classes.text}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
-        title={ article.name }
-        subheader={ moment(article.date).fromNow() }
+        action={
+          <div>
+            <IconButton
+              aria-label="more"
+              id="long-button"
+              aria-controls={open ? 'long-menu' : undefined}
+              aria-expanded={open ? 'true' : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="long-menu"
+              MenuListProps={{
+                'aria-labelledby': 'long-button',
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: '20ch',
+                },
+              }}
+            >
+              <MenuItem key={`view_${article._id}`}>
+                <Link href={articleUrl}>View More</Link>
+              </MenuItem>
+            </Menu>
+          </div>
+        }
+        title={article.name}
+        subheader={moment(article.date).fromNow()}
       />
       <CardMedia
         className={classes.media}
+        component="img"
+        alt={ article.name }
+        height="140"
         image={ imageUrl }
-        title={ article.name }
       />
       <CardContent className={ classes.text }>
-        <Typography variant="body2" component="p">
-          { article.body.substring(0, "50") }...
+        <Typography variant="body2" component="p" sx={{ color: 'white' }}>
+          { article.description.substring(0, "50") }...
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -109,10 +159,10 @@ const  Article = ({ article, setArticle }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={ classes.text }>
-          <Typography paragraph>{ article.body }</Typography>
+          <Typography paragraph sx={{ color: 'white' }}>{ article.description }</Typography>
         </CardContent>
       </Collapse>
-    </Card>
+    </Root>
   );
 }
 

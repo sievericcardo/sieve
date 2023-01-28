@@ -1,58 +1,59 @@
-import logo from '../../assets/img/base-img/sieve-logo-dark.webp';
+import React from 'react';
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect } from "react-router-dom";
-
-import clsx from 'clsx';
-
-import { makeStyles } from '@material-ui/core/styles';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-
-// Import element from the icons
-import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import { styled } from '@mui/material/styles';
 
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex'
+const PREFIX = 'Dashboard';
+const classes = {
+  root: `${PREFIX}-root`,
+  toolbar: `${PREFIX}-toolbar`,
+  toolbarIcon: `${PREFIX}-toolbarIcon`,
+  appBar: `${PREFIX}-appBar`,
+  menuButton: `${PREFIX}-menuButton`,
+  menuButtonHidden: `${PREFIX}-menuButtonHidden`,
+  title: `${PREFIX}-title`,
+  drawerPaper: `${PREFIX}-drawerPaper`,
+  drawerPaperClose: `${PREFIX}-drawerPaperClose`,
+  appBarSpacer: `${PREFIX}-appBarSpacer`,
+  content: `${PREFIX}-content`,
+  container: `${PREFIX}-container`,
+  paper: `${PREFIX}-paper`,
+  fixedHeight: `${PREFIX}-fixedHeight`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.root}`]: {
+    display: 'block',
   },
-  toolbar: {
+  [`&.${classes.toolbar}`]: {
     paddingRight: 24,
   },
-  toolbarIcon: {
+  [`&.${classes.toolbarIcon}`]: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
   },
-  appBar: {
+  [`&.${classes.appBar}`]: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  menuButton: {
+  [`&.${classes.menuButton}`]: {
     marginRight: 36,
   },
-  menuButtonHidden: {
+  [`&.${classes.menuButtonHidden}`]: {
     display: 'none',
   },
-  title: {
+  [`&.${classes.title}`]: {
     flexGrow: 1,
   },
-  drawerPaper: {
+  [`&.${classes.drawerPaper}`]: {
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -61,95 +62,43 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerPaperClose: {
+  [`&.${classes.drawerPaperClose}`]: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9),
+    },
   },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
+  [`&.${classes.appBarSpacer}`]: theme.mixins.toolbar,
+  [`&.${classes.content}`]: {
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
   },
-  container: {
+  [`&.${classes.container}`]: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  paper: {
+  [`&.${classes.paper}`]: {
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
   },
-  fixedHeight: {
+  [`&.${classes.fixedHeight}`]: {
     height: 240,
-  },
-  logo: {
-    width: '30px',
-    marginRight: '20px'
-  },
-  notification: {
-    right: '10px',
-    top: '0px',
-    position: 'absolute'
-  },
-  pageTitle: {
-    fontFamily: 'WindSong',
   },
 }));
 
 const Dashboard = () => {
-  const classes = useStyles();
-  const auth = useSelector((state) => state.auth);
-
-  const [open, setOpen] = useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  if (auth === null) {
-    return <Redirect to="/" />;
-  }
-
   return (
-    <div className={ classes.root }>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={ clsx(classes.appBar, open && classes.appBarShift) }
-      >
-        <Toolbar className={ classes.toolbar }>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={ handleDrawerOpen }
-            className={ clsx(classes.menuButton, open && classes.menuButtonHidden) }
-          >
-            <MenuIcon />
-          </IconButton>
-          <img src={logo} className={ classes.logo } alt="Logo dashboard" />
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={ classes.pageTitle }
-          >
-            <span className={ classes.title }>Sieve Dashboard</span>
-            <IconButton color="inherit" className={ classes.notification }>
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <Root className={ classes.root }>
+
+    </Root>
   )
 }
 

@@ -1,14 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-import { TextField, Button } from "@material-ui/core";
-import { Send } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/styles";
+import { TextField, Button } from '@mui/material';
+import { Send } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
-import { addMedia, updateMedia } from "../../../store/actions/mediaActions";
+import { addMedia, updateMedia } from "../../../hooks/mediaHooks";
 
-const useStyles = makeStyles({
-  formStyle: {
+const PREFIX = "DashboardAddMedia";
+
+const classes = {
+  formStyle: `${PREFIX}-formStyle`,
+  submitButton: `${PREFIX}-submitButton`,
+  imageUpload: `${PREFIX}-imageUpload`,
+};
+
+const Root = styled("form")(({ theme }) => ({
+  [`&.${classes.formStyle}`]: {
     maxWidth: "70vw",
     margin: "0px auto",
     padding: "30px",
@@ -16,21 +23,19 @@ const useStyles = makeStyles({
     boxShadow: "0px 0px 12px -3px #000",
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
-  submitButton: {
+  [`&.${classes.submitButton}`]: {
     marginLeft: "20px",
   },
-  imageUpload: {
-    color: '#4d3f5a',
-    padding: '10px',
-    margin: '10px'
-  }
-});
+  [`&.${classes.imageUpload}`]: {
+    color: "#4d3f5a",
+    padding: "10px",
+    margin: "10px",
+  },
+}));
 
 const AddMedia = ({ media, setMedia }) => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
 
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -55,7 +60,7 @@ const AddMedia = ({ media, setMedia }) => {
         author: "Riccardo",
       };
 
-      dispatch(updateMedia(updatedMedia, id));
+      updateMedia(updatedMedia, id);
     } else {
       var file = media.image;
 
@@ -64,27 +69,30 @@ const AddMedia = ({ media, setMedia }) => {
           const newMedia = {
             ...media,
             image: data,
+            author: "Riccardo",
             date: new Date(),
           };
     
-          dispatch(addMedia(newMedia));
+          addMedia(newMedia);
         }
       );
     }
 
     setMedia({
       alt: "",
+      author: "Riccardo",
     });
   };
 
   return (
     <>
-      <form
+      <Root
         noValidate
         autoComplete="off"
         className={ classes.formStyle }
         encType='multipart/form-data'
         onSubmit={ handleSubmit }
+        style={{ marginBottom: "30px"}}
       >
         <TextField 
           id="media-alt"
@@ -103,16 +111,18 @@ const AddMedia = ({ media, setMedia }) => {
           accept="image/webp"
           className={ classes.imageUpload }
           onChange={(e) => setMedia({ ...media, image: e.target.files[0] })}
+          style={{ margin: "0.2em", padding: "0.2em" }}
         />
         <Button
           className={ classes.submitButton }
           color="primary"
           variant="contained"
           type="submit"
+          style={{ borderRadius: "18px" }}
         >
           <Send />
         </Button>
-      </form>
+      </Root>
     </>
   );
 };

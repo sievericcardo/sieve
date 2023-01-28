@@ -1,32 +1,42 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-import Grid from '@material-ui/core/Grid';
+import { Grid, useMediaQuery } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Project from './Project';
-import { getProjects } from '../../store/actions/projectActions';
+import { getProjects } from '../../hooks/projectHooks';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const PREFIX = 'ListProjects';
+const classes = {
+  root: `${PREFIX}-root`,
+  paper: `${PREFIX}-paper`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.root}`]: {
     flexGrow: 1,
     marginTop: '0.7em',
   },
-  paper: {
+  [`&.${classes.paper}`]: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
 }));
 
-const ListProjects = ({ project, setProject }) => {
-  const classes = useStyles();
-
-  const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects);
+const ListProjects = () => {
+  const [ projects, setProjects ] = useState();
+  const large = useMediaQuery('(min-width:1000px)');
 
   var length = 0;
+
+  // Use Effect will be called when our components renders
+  useEffect(() => {
+    getProjects().then((res) => {
+      setProjects(res);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!projects) {
     length = 0
@@ -34,30 +44,24 @@ const ListProjects = ({ project, setProject }) => {
     length = projects.length
   }
 
-  // Use Effect will be called when our components renders
-  useEffect(() => {
-    dispatch(getProjects());
-  }, [dispatch]); // this is to avoid it making continually rendering
-
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
     {length > 0 ? (
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {projects &&
           projects.map((project) => {
             return (
-              <Grid item xs={6}>
+              <Grid item xs={12} md={large ? 2 : 4} sm={6} key={project._id}>
                 <Project
                   project={project}
                   key={project._id}
-                  setProject={setProject}
                 />
               </Grid>
             );
           })}
       </Grid>
     ) : ""}
-    </div>
+    </Root>
   );
 }
 

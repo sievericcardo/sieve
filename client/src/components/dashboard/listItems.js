@@ -3,24 +3,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Import element from the core
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from '@mui/material';
 
 // Import icons
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import PermMediaIcon from '@material-ui/icons/PermMedia';
-import AccountTree from '@material-ui/icons/AccountTree';
-import DescriptionIcon from '@material-ui/icons/Description';
-
-// Add icons for data in dashboard
-import Book from '@material-ui/icons/Book';
+import {
+  Dashboard as DashboardIcon,
+  Assignment as AssignmentIcon,
+  PermMedia as PermMediaIcon,
+  AccountTree,
+  Book,
+} from '@mui/icons-material';
 
 export const mainListItems = (
   <div>
-    <Link className="linkStyle" to='/cms-dashboard'>
+    <Link className="linkStyle" to='/cms/dashboard'>
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />
@@ -28,7 +29,7 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-medias'>
+    <Link className="linkStyle" to='/cms/medias'>
       <ListItem button>
         <ListItemIcon>
           <PermMediaIcon />
@@ -36,15 +37,15 @@ export const mainListItems = (
         <ListItemText primary="Media" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-articles'>
+    <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
          <Book />
         </ListItemIcon>
-        <ListItemText primary="Articles" />
+        <ListItemText primary="Writeups" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-projects'>
+    <Link className="linkStyle" to='/cms/projects'>
       <ListItem button>
         <ListItemIcon>
           <AccountTree />
@@ -52,14 +53,14 @@ export const mainListItems = (
         <ListItemText primary="Projects" />
       </ListItem>
     </Link>
-    <Link className="linkStyle" to='/cms-dashboard/manage-writeups'>
+    {/* <Link className="linkStyle" to='/cms/writeups'>
       <ListItem button>
         <ListItemIcon>
           <DescriptionIcon />
         </ListItemIcon>
         <ListItemText primary="Writeups" />
       </ListItem>
-    </Link>
+    </Link> */}
   </div>
 );
 
@@ -83,6 +84,69 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
+    </ListItem>
+  </div>
+)
+
+export const mainListItemsMobile = (
+  <div>
+    <Link className="linkStyle" to='/cms/dashboard'>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/medias'>
+      <ListItem button>
+        <ListItemIcon>
+          <PermMediaIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/writeups'>
+      <ListItem button>
+        <ListItemIcon>
+         <Book />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    <Link className="linkStyle" to='/cms/projects'>
+      <ListItem button>
+        <ListItemIcon>
+          <AccountTree />
+        </ListItemIcon>
+      </ListItem>
+    </Link>
+    {/* <Link className="linkStyle" to='/cms/writeups'>
+      <ListItem button>
+        <ListItemIcon>
+          <DescriptionIcon />
+        </ListItemIcon>
+      </ListItem>
+    </Link> */}
+  </div>
+);
+
+export const secondaryListItemsMobile = (
+  <div>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Current month" /> */}
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Last quarter" /> */}
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      {/* <ListItemText primary="Year-end sale" /> */}
     </ListItem>
   </div>
 )

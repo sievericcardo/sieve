@@ -2,68 +2,42 @@ import banner from '../../assets/img/base-img/home-banner.webp';
 
 import React from 'react';
 
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import Banner from '../assets/Banner';
 import Projects from '../projects/Projects';
 import Articles from '../articles/Articles';
 
-import LinkedIn from '@material-ui/icons/LinkedIn';
-import GitHub from '@material-ui/icons/GitHub';
-import Twitter from '@material-ui/icons/Twitter';
+import {
+  GitHub,
+  LinkedIn,
+  Twitter,
+} from '@mui/icons-material';
 
-const useStyles = makeStyles({
-  mainContent: {
-    position: 'relative',
-    clear: 'all',
-    marginTop: '5vh',
-    width: '80vw',
-    margin: 'auto',
-  },
-  homeTitle: {
-    fontSize: '3.1em',
-    marginBottom: '1em',
-  },
-  homeSubTitle: {
-    fontSize: '2.1em',
-    marginBottom: '1em',
-  },
-  subTitle: {
-    borderBottom: '3px solid black',
-    fontSize: '2.3em',
-    marginBottom: '0.5em',
-    marginTop: '1.2em',
-    padding: '15px',
-    textAlign: 'center',
-  },
-  icons: {
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    textAlign: 'center',
-    fontSize: '1.2em',
-    margin: 'auto',
-    justifyContent: 'center',
-  },
-  links: {
-    color: 'inherit',
-    textDecoration: 'none',
-    padding: '15px',
-  },
-  largeIcon: {
-    width: '2.3em',
-    height: '2.3em',
-  },
-});
+const PREFIX = 'Home';
+const classes = {
+  mainContent: `${PREFIX}-mainContent`,
+  homeTitle: `${PREFIX}-homeTitle`,
+  homeSubTitle: `${PREFIX}-homeSubTitle`,
+  subTitle: `${PREFIX}-subTitle`,
+  icons: `${PREFIX}-icons`,
+  icon: `${PREFIX}-icon`,
+};
+
+const Root = styled('div')(({ theme }) => ({}));
+
+const Block = styled('div')({
+  width: '80vw',
+  margin: '0 auto',
+})
 
 const Home = () => {
-  const classes = useStyles();
-
   return(
-    <div className={ classes.base }>
+    <Root className={ classes.base }>
       <Banner childToParent={[banner, "Home page banner"]}/>
-      <div className={ classes.mainContent }>
-        <Typography variant="h1" className={ classes.homeTitle}>
+      <div className='homeMainContent'>
+        <Typography variant="h1" className='homeTitle'>
           My personal portfolio
         </Typography>
         <Typography variant="body1">
@@ -78,31 +52,38 @@ const Home = () => {
         <Typography variant="body1">
           Even now that passion still lies and I keep learning and studying to improve and I constantly look for challenges and improvement possibilities.
         </Typography>
-        <p>&nbsp;</p>
-        <Typography variant="h2" className={ classes.homeSubTitle}>
-          Come see me on other platform as well
-        </Typography>
-        <div className={ classes.icons }>
-          <a href="https://www.linkedin.com/in/sieve-riccardo/" rel="noreferrer" className={ classes.links } target="_blank">
-            <LinkedIn className={ classes.largeIcon } />
-          </a>
-          <a href="https://github.com/sievericcardo/" rel="noreferrer" className={ classes.links } target="_blank">
-            <GitHub className={ classes.largeIcon } />
-          </a>
-          <a href="https://twitter.com/RiccardoSieve" rel="noreferrer" className={ classes.links } target="_blank">
-            <Twitter className={ classes.largeIcon } />
-          </a>
-        </div>
-        <Typography variant="h3" className={ classes.subTitle}>
-          My projects
+      </div>
+      <Block>
+        <Typography variant="h3" className='subTitle'>
+          Projects
         </Typography>
         <Projects />
-        <Typography variant="h3" className={ classes.subTitle}>
-          My posts
+        <Typography variant="h3" className='subTitle'>
+          Writeups
         </Typography>
         <Articles />
+      </Block>
+      <div>
+        <p>&nbsp;</p>
+        <Typography 
+          variant="h2"
+          className='homeSubTitle' 
+          style={{ textAlign: 'center' }}>
+          Come see me on other platform as well
+        </Typography>
+        <div className='icons'>
+          <a href="https://www.linkedin.com/in/sieve-riccardo/" rel="noreferrer" className={ classes.links } target="_blank">
+            <LinkedIn className={ classes.largeIcon + ' icon' } fontSize="large" />
+          </a>
+          <a href="https://github.com/sievericcardo/" rel="noreferrer" className={ classes.links } target="_blank">
+            <GitHub className={ classes.largeIcon + ' icon' } fontSize="large" />
+          </a>
+          <a href="https://twitter.com/RiccardoSieve" rel="noreferrer" className={ classes.links } target="_blank">
+            <Twitter className={ classes.largeIcon + ' icon' } fontSize="large" />
+          </a>
+        </div>
       </div>
-    </div>
+    </Root>
   )
 };
 
