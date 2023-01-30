@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { getProject } from '../../hooks/projectHooks';
 
 const Root = styled('div')({
-  backgroundColor: 'rgba(50, 115, 220, 0.3)',
+  backgroundColor: 'rgba(50, 115, 220, 0.1)',
   marginTop: '1.4rem',
   marginBottom: '1rem',
   padding: '1rem',
@@ -31,6 +31,7 @@ const Project = () => {
   return (
     <Root>
       <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
+      <Typography variant="body2">{project.description}</Typography>
       <ReactMarkdown>{ decodeURIComponent(escape(project.body)) }</ReactMarkdown>
     </Root>
   );

@@ -50,6 +50,7 @@ const ListProjects = ({ project, setProject }) => {
         </Typography>
         {projects &&
           projects.map((project) => {
+            console.log(project.uid);
             return (
               <Project
                 project={project}

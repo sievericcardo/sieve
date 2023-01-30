@@ -44,7 +44,6 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent refresh of the browser
 
-    console.log(user);
     signUp(user);
     setUser({
       name: "",
