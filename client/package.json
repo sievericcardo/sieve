@@ -1,7 +1,7 @@
 {
   "name": "sieve-frontend",
   "version": "0.1.0",
-  "homepage": "https://sievericcardo.github.io",
+  "homepage": "https://sieve.serveblog.net",
   "private": true,
   "dependencies": {
     "@emotion/cache": "^11.10.5",

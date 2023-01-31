@@ -32,6 +32,11 @@ h4 {
   margin-bottom: 10px!important;
 }
 
+img {
+  max-width:70vw;
+  max-height:60vh;
+}
+
 body {
   overflow-y: overlay;
   min-height: 100vh;
