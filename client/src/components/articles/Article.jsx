@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 
@@ -15,8 +16,7 @@ import {
   IconButton,
   Typography,
   Menu,
-  MenuItem,
-  Link
+  MenuItem
 } from '@mui/material';
 import { red } from '@mui/material/colors';
 import {
@@ -125,7 +125,7 @@ const  Article = ({ article }) => {
               }}
             >
               <MenuItem key={`view_${article._id}`}>
-                <Link href={articleUrl}>View More</Link>
+                <Link to={articleUrl}>View More</Link>
               </MenuItem>
             </Menu>
           </div>

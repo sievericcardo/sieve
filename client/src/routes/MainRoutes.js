@@ -12,17 +12,17 @@ const MainRoutes = {
   element: <MainLayout />,
   children: [
     {
-      path: '/',
-      element: <Home />
-    },
-    {
       path: '/project/:id',
       element: <Project />
     },
     {
       path: '/article/:id',
       element: <Article />
-    }
+    },
+    {
+      path: '/',
+      element: <Home />
+    },
   ]
 };
 
