@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.d799801e.css",
-    "main.js": "/static/js/main.bdc68738.js",
-    "static/js/920.d5bf70ba.chunk.js": "/static/js/920.d5bf70ba.chunk.js",
+    "main.css": "/static/css/main.74f2f366.css",
+    "main.js": "/static/js/main.36fe9fb7.js",
+    "static/js/920.0bb24432.chunk.js": "/static/js/920.0bb24432.chunk.js",
     "static/js/313.f592ff99.chunk.js": "/static/js/313.f592ff99.chunk.js",
     "static/js/339.00b82425.chunk.js": "/static/js/339.00b82425.chunk.js",
     "static/js/246.a0469e0b.chunk.js": "/static/js/246.a0469e0b.chunk.js",
@@ -22,9 +22,9 @@
     "static/media/home-banner.webp": "/static/media/home-banner.bbb3153ff47bdb151546.webp",
     "static/media/sieve-logo-dark.webp": "/static/media/sieve-logo-dark.2d05e50863e0063dbdac.webp",
     "index.html": "/index.html",
-    "main.d799801e.css.map": "/static/css/main.d799801e.css.map",
-    "main.bdc68738.js.map": "/static/js/main.bdc68738.js.map",
-    "920.d5bf70ba.chunk.js.map": "/static/js/920.d5bf70ba.chunk.js.map",
+    "main.74f2f366.css.map": "/static/css/main.74f2f366.css.map",
+    "main.36fe9fb7.js.map": "/static/js/main.36fe9fb7.js.map",
+    "920.0bb24432.chunk.js.map": "/static/js/920.0bb24432.chunk.js.map",
     "313.f592ff99.chunk.js.map": "/static/js/313.f592ff99.chunk.js.map",
     "339.00b82425.chunk.js.map": "/static/js/339.00b82425.chunk.js.map",
     "246.a0469e0b.chunk.js.map": "/static/js/246.a0469e0b.chunk.js.map",
@@ -43,7 +43,7 @@
     "248.e8da4689.chunk.js.map": "/static/js/248.e8da4689.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d799801e.css",
-    "static/js/main.bdc68738.js"
+    "static/css/main.74f2f366.css",
+    "static/js/main.36fe9fb7.js"
   ]
 }
