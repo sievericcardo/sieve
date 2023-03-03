@@ -15,6 +15,7 @@ const Root = styled('div')({
   width: '80vw',
   marginLeft: 'auto',
   marginRight: 'auto',
+  minHeight: '90vh',
 });
 
 const Article = () => {
