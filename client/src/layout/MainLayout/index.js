@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+// import sieve-anime-background from '../../assets/img/base-img/sieve-anime-background.webp';
 
 import { useTheme } from '@mui/material/styles';
 import {
