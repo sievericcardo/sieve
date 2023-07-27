@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import { getProject } from '../../hooks/projectHooks';
 
 const Root = styled('div')({
-  backgroundColor: 'rgba(50, 115, 220, 0.3)',
+  backgroundColor: 'rgba(50, 115, 220, 0.8)',
   marginTop: '1.4rem',
   marginBottom: '1rem',
   padding: '1rem',
