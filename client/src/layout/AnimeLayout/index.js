@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+// import sieveAnimeBackground from '../../assets/img/base-img/sieve-anime-background.webp';
 
 import { useTheme } from '@mui/material/styles';
 import {
@@ -13,7 +14,7 @@ import Footer from '../../components/navbar/Footer';
 import AnimeCustomization from '../AnimeCustomization';
 import { SET_MENU } from '../../store/actions';
 
-const MainLayout = () => {
+const AnimeLayout = () => {
   const theme = useTheme();
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <Box sx={{ display: 'block' }}>
+    <Box sx={{ display: 'block' }} className="animeLayout">
       <CssBaseline />
       <main theme={theme}>
         <Navbar />
@@ -36,5 +37,5 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default AnimeLayout;
 

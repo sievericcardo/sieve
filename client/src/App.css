@@ -7,6 +7,7 @@
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
+  background-color: #f1f1f1;
 }
 
 .formContent {
@@ -21,8 +22,8 @@
   text-decoration: none;
 }
 
-h1 {
-  line-height: 1.3;
+.introBlock {
+  padding: 2em;
 }
 
 h4 {
@@ -38,6 +39,22 @@ body {
   width: 100vw;
 }
 
+@media screen and (max-width: 800px) {
+  .animeLayout {
+    background-image: url("./assets/img/base-img/sieve-anime-background-mobile.webp")!important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}
+
+.animeLayout {
+  background-image: url("./assets/img/base-img/sieve-anime-background.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .MuiCard-root {
     margin-left: 1em;
     margin-right: 1em;
@@ -50,3 +67,28 @@ body {
 .MuiCardHeader-subheader {
   color: #fff!important;
 }
+
+.animeNav {
+  background-color: #792c87!important;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

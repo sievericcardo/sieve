@@ -4,6 +4,12 @@ import MainRoutes from './MainRoutes';
 import AuthenticationRoutes from './AuthenticationRoutes';
 import DashboardRoutes from './DashboardRoutes';
 
-export default function ThemeRoutes() {
-    return useRoutes([MainRoutes, AuthenticationRoutes, DashboardRoutes]);
+export default function ThemeRoutes({ animeState }) {
+    const routes = [
+        MainRoutes(animeState),
+        AuthenticationRoutes,
+        DashboardRoutes,
+      ];
+    
+      return useRoutes(routes);
 }

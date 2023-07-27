@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
-import Routes from './routes';
+import ThemeRoutes from './routes';
 import theme from './theme';
 
 import NavigationScroll from './layout/NavigationScroll';
@@ -16,6 +17,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 const App = () => {
   const customization = useSelector((state) => state.customization);
+  const [ animeState ] = useState(
+    JSON.parse(localStorage.getItem('animeState')) || false
+  );
 
   return (
     <StyledEngineProvider injectFirst>
@@ -25,7 +29,7 @@ const App = () => {
             <CssBaseline />
             <ToastContainer />
             <NavigationScroll>
-              <Routes />
+              <ThemeRoutes animeState={animeState} />
             </NavigationScroll>
           </ThemeProvider>
         </BrowserRouter>

@@ -6,20 +6,29 @@ import { styled } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
 
 import { getArticle } from '../../hooks/articleHooks';
+import DynamicLoader from '../ui/DynamicLoader';
 
 const Root = styled('div')({
-  backgroundColor: 'rgba(50, 115, 220, 0.1)',
+  backgroundColor: 'rgba(50, 115, 220, 0.8)',
   marginTop: '1.4rem',
   marginBottom: '1rem',
-  padding: '2rem',
+  padding: '1rem',
   width: '80vw',
   marginLeft: 'auto',
   marginRight: 'auto',
-  minHeight: '90vh',
 });
 
 const Article = () => {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating an API call or any asynchronous task
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Simulate a 3-second loading time
+  }, []);
+
   const [article, setArticle] = useState({});
 
   useEffect(() => {
@@ -31,9 +40,15 @@ const Article = () => {
 
   return (
     <Root>
-      <Typography variant="h4"><AllInclusive /> {article.name}</Typography>
-      <Typography variant="body2">{article.description}</Typography>
-      <ReactMarkdown>{ decodeURIComponent(escape(article.body)) }</ReactMarkdown>
+      {isLoading ? (
+        <DynamicLoader />
+      ) : (
+        <>
+          <Typography variant="h4"><AllInclusive /> {article.name}</Typography>
+          <Typography variant="subtitle1">{article.description}</Typography>
+          <ReactMarkdown>{ decodeURIComponent(escape(article.body)) }</ReactMarkdown>
+        </>
+      )}
     </Root>
   );
 };

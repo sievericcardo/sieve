@@ -8,6 +8,7 @@ import {
 
 import Article from './Article';
 import { getArticles } from '../../hooks/articleHooks';
+import DynamicLoader from "../ui/DynamicLoader";
 
 const PREFIX = "ListArticles";
 const classes = {
@@ -84,7 +85,7 @@ const ListArticles = () => {
             );
           })}
       </ImageList>
-      ) : ""}
+      ) : <DynamicLoader />}
     </Root>
   );
 }
