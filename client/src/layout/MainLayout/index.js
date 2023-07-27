@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-// import sieve-anime-background from '../../assets/img/base-img/sieve-anime-background.webp';
 
 import { useTheme } from '@mui/material/styles';
 import {
@@ -11,6 +10,7 @@ import {
 
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/navbar/Footer';
+import AnimeCustomization from '../AnimeCustomization';
 import { SET_MENU } from '../../store/actions';
 
 const MainLayout = () => {
@@ -30,6 +30,7 @@ const MainLayout = () => {
         <Navbar />
         <Outlet />
         <Footer />
+        <AnimeCustomization />
       </main>
     </Box>
   );
