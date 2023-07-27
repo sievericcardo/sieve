@@ -38,7 +38,7 @@ const  Project = ({ project }) => {
           { project.name }
         </Typography>
         <Typography variant="body2" color="text.primary">
-          { project.description }
+          { project.description.substring(0, 80) }...
         </Typography>
       </CardContent>
       <CardActions>
