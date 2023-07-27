@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 
 import Project from './Project';
 import { getProjects } from '../../hooks/projectHooks';
+import DynamicLoader from '../ui/DynamicLoader';
 
 const PREFIX = 'ListProjects';
 const classes = {
@@ -60,7 +61,7 @@ const ListProjects = () => {
             );
           })}
       </Grid>
-    ) : ""}
+    ) : <DynamicLoader />}
     </Root>
   );
 }

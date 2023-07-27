@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
 
 import { getProject } from '../../hooks/projectHooks';
+import DynamicLoader from '../ui/DynamicLoader';
 
 const Root = styled('div')({
   backgroundColor: 'rgba(50, 115, 220, 0.8)',
@@ -19,6 +20,15 @@ const Root = styled('div')({
 
 const Project = () => {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating an API call or any asynchronous task
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Simulate a 3-second loading time
+  }, []);
+
   const [project, setProject] = useState({});
 
   useEffect(() => {
@@ -30,9 +40,15 @@ const Project = () => {
 
   return (
     <Root>
-      <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
-      <Typography variant="body2">{project.description}</Typography>
-      <ReactMarkdown>{ decodeURIComponent(escape(project.body)) }</ReactMarkdown>
+      {isLoading ? (
+        <DynamicLoader />
+      ) : (
+        <>
+        <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
+        <Typography variant="subtitle1">{project.description}</Typography>
+        <ReactMarkdown>{ decodeURIComponent(escape(project.body)) }</ReactMarkdown>
+        </>
+      )}
     </Root>
   );
 };
