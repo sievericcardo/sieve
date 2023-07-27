@@ -17,7 +17,7 @@ const Root = styled('div')(({ theme }) => ({
     margin: 0,
     left: 0,
     top: 0,
-    zIndex: -1,
+    zIndex: 1,
   },
   [`&.${classes.banner}`]: {
     width: '100vw',
