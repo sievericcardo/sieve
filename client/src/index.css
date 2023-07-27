@@ -91,6 +91,12 @@ code {
   margin-top: 2vw;
   margin-left: 15vw;
   margin-right: 5vw;
+  background-color: rgba(255, 255, 255, 0.6)!important;
+}
+
+.homeMainContent {
+  background-color: rgba(255, 255, 255, 0.8)!important;
+  padding: 20px;
 }
 
 .paper {
@@ -130,6 +136,7 @@ code {
   margin-top: 1.2em!important;
   padding: 15px!important;
   text-align: center;
+  width: 70wv;
 }
 
 .icons {
