@@ -42,12 +42,12 @@ const Root = styled("div")(({ theme }) => ({
 
 const Navbar = () => {
   const [ loggedIn, setLoggedIn ] = useState(false);
-  // const state = useSelector((state) => state);
-  // const auth = useSelector((state) => state.auth);
+  const [ animeState ] = useState(
+    JSON.parse(localStorage.getItem('animeState')) || false
+  );
   const name = localStorage.getItem("user");
 
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
   const handleSignOut = () => {
     // logout
@@ -56,6 +56,14 @@ const Navbar = () => {
 
     navigate("/auth/signin");
   };
+
+  useEffect(() => {
+    if (animeState) {
+      document.querySelector(".navbar").classList.add("animeNav");
+    } else {
+      document.querySelector(".navbar").classList.remove("animeNav");
+    }
+  }, [animeState]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
