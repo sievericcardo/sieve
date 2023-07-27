@@ -1,6 +1,8 @@
 import banner from '../../assets/img/base-img/home-banner.webp';
+import animeBanner from '../../assets/img/base-img/anime-banner.webp';
 
 import React from 'react';
+import { useState } from 'react';
 
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -33,9 +35,13 @@ const Block = styled('div')({
 })
 
 const Home = () => {
+  const [animeState] = useState(
+    JSON.parse(localStorage.getItem('animeState')) || false
+  );
+
   return(
     <Root className={ classes.base }>
-      <Banner childToParent={[banner, "Home page banner"]}/>
+      <Banner childToParent={[ animeState ? animeBanner : banner, "Home page banner"]}/>
       <div className='homeMainContent'>
         <Typography variant="h1" className='homeTitle'>
           My personal portfolio
@@ -52,35 +58,35 @@ const Home = () => {
         <Typography variant="body1">
           Even now that passion still lies and I keep learning and studying to improve and I constantly look for challenges and improvement possibilities.
         </Typography>
-      </div>
-      <Block>
-        <Typography variant="h3" className='subTitle'>
-          Projects
-        </Typography>
-        <Projects />
-        <Typography variant="h3" className='subTitle'>
-          Writeups
-        </Typography>
-        <Articles />
-      </Block>
-      <div>
-        <p>&nbsp;</p>
-        <Typography 
-          variant="h2"
-          className='homeSubTitle' 
-          style={{ textAlign: 'center' }}>
-          Come see me on other platform as well
-        </Typography>
-        <div className='icons'>
-          <a href="https://www.linkedin.com/in/sieve-riccardo/" rel="noreferrer" className={ classes.links } target="_blank">
-            <LinkedIn className={ classes.largeIcon + ' icon' } fontSize="large" />
-          </a>
-          <a href="https://github.com/sievericcardo/" rel="noreferrer" className={ classes.links } target="_blank">
-            <GitHub className={ classes.largeIcon + ' icon' } fontSize="large" />
-          </a>
-          <a href="https://twitter.com/RiccardoSieve" rel="noreferrer" className={ classes.links } target="_blank">
-            <Twitter className={ classes.largeIcon + ' icon' } fontSize="large" />
-          </a>
+        <Block>
+          <Typography variant="h3" className='subTitle'>
+            Projects
+          </Typography>
+          <Projects />
+          <Typography variant="h3" className='subTitle'>
+            Writeups
+          </Typography>
+          <Articles />
+        </Block>
+        <div>
+          <p>&nbsp;</p>
+          <Typography 
+            variant="h2"
+            className='homeSubTitle' 
+            style={{ textAlign: 'center' }}>
+            Come see me on other platform as well
+          </Typography>
+          <div className='icons'>
+            <a href="https://www.linkedin.com/in/sieve-riccardo/" rel="noreferrer" className={ classes.links } target="_blank">
+              <LinkedIn className={ classes.largeIcon + ' icon' } fontSize="large" />
+            </a>
+            <a href="https://github.com/sievericcardo/" rel="noreferrer" className={ classes.links } target="_blank">
+              <GitHub className={ classes.largeIcon + ' icon' } fontSize="large" />
+            </a>
+            <a href="https://twitter.com/RiccardoSieve" rel="noreferrer" className={ classes.links } target="_blank">
+              <Twitter className={ classes.largeIcon + ' icon' } fontSize="large" />
+            </a>
+          </div>
         </div>
       </div>
     </Root>
