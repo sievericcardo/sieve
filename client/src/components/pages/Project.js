@@ -31,6 +31,7 @@ const Project = () => {
   return (
     <Root>
       <Typography variant="h4"><AllInclusive /> {project.name}</Typography>
+      <Typography variant="body2">{project.description}</Typography>
       <ReactMarkdown>{ decodeURIComponent(escape(project.body)) }</ReactMarkdown>
     </Root>
   );
