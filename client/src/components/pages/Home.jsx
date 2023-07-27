@@ -75,7 +75,7 @@ const Home = () => {
           <Typography 
             variant="h2"
             className='homeSubTitle' 
-            style={{ textAlign: 'center' }}>
+            style={{ textAlign: 'center', padding: '1.23em' }}>
             Come see me on other platform as well
           </Typography>
           <div className='icons'>
