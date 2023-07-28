@@ -14,6 +14,8 @@ import theme from './components/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
+import { AnimeProvider } from './context/AnimeContext';
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 
@@ -21,8 +23,10 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
+        <AnimeProvider>
+          <CssBaseline />
+          <App />
+        </AnimeProvider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

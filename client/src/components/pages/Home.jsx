@@ -2,7 +2,8 @@ import banner from '../../assets/img/base-img/home-banner.webp';
 import animeBanner from '../../assets/img/base-img/anime-banner.webp';
 
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useAnimeContext } from '../../context/AnimeContext';
 
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -35,9 +36,10 @@ const Block = styled('div')({
 })
 
 const Home = () => {
-  const [animeState] = useState(
-    JSON.parse(localStorage.getItem('animeState')) || false
-  );
+  // const [animeState] = useState(
+  //   JSON.parse(localStorage.getItem('animeState')) || false
+  // );
+  const { animeState } = useAnimeContext();
 
   return(
     <Root className={ classes.base }>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useAnimeContext } from '../../context/AnimeContext';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -14,18 +14,13 @@ import AnimateButton from '../../components/ui/extended/AnimateButton';
 
 const AnimeCustomization = () => {
   const theme = useTheme();
-
-  const [animeState, setAnimeState] = useState(
-    JSON.parse(localStorage.getItem('animeState')) || false
-  );
+  const { setAnimeState } = useAnimeContext();
 
   const toggleAnimeLayout = () => {
     setAnimeState((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    localStorage.setItem('animeState', JSON.stringify(animeState));
-  }, [animeState]);
+  
 
   return (
     <>

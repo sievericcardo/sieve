@@ -2,6 +2,8 @@ import logo from "../../assets/img/base-img/sieve-logo-dark.webp";
 
 import React, { useState, useEffect } from "react";
 
+import { useAnimeContext } from "../../context/AnimeContext";
+
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
@@ -42,9 +44,7 @@ const Root = styled("div")(({ theme }) => ({
 
 const Navbar = () => {
   const [ loggedIn, setLoggedIn ] = useState(false);
-  const [ animeState ] = useState(
-    JSON.parse(localStorage.getItem('animeState')) || false
-  );
+  const { animeState } = useAnimeContext();
   const name = localStorage.getItem("user");
 
   const navigate = useNavigate();

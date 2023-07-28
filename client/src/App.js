@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
@@ -15,11 +14,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 
+import { useAnimeContext } from './context/AnimeContext';
+
 const App = () => {
   const customization = useSelector((state) => state.customization);
-  const [ animeState ] = useState(
-    JSON.parse(localStorage.getItem('animeState')) || false
-  );
+  const { animeState } = useAnimeContext();
 
   return (
     <StyledEngineProvider injectFirst>
