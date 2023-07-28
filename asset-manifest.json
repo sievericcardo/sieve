@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.3672969d.css",
+    "main.css": "/static/css/main.c505f56f.css",
     "main.js": "/static/js/main.e5e1ef69.js",
     "static/js/159.69e86f48.chunk.js": "/static/js/159.69e86f48.chunk.js",
     "static/js/313.8d2a0ecd.chunk.js": "/static/js/313.8d2a0ecd.chunk.js",
@@ -25,7 +25,7 @@
     "static/media/home-banner.webp": "/static/media/home-banner.578c3a1a7d0be38e18d9.webp",
     "static/media/sieve-logo-dark.webp": "/static/media/sieve-logo-dark.2d05e50863e0063dbdac.webp",
     "index.html": "/index.html",
-    "main.3672969d.css.map": "/static/css/main.3672969d.css.map",
+    "main.c505f56f.css.map": "/static/css/main.c505f56f.css.map",
     "main.e5e1ef69.js.map": "/static/js/main.e5e1ef69.js.map",
     "159.69e86f48.chunk.js.map": "/static/js/159.69e86f48.chunk.js.map",
     "313.8d2a0ecd.chunk.js.map": "/static/js/313.8d2a0ecd.chunk.js.map",
@@ -46,7 +46,7 @@
     "248.e8da4689.chunk.js.map": "/static/js/248.e8da4689.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3672969d.css",
+    "static/css/main.c505f56f.css",
     "static/js/main.e5e1ef69.js"
   ]
 }
