@@ -40,15 +40,17 @@ h4 {
 body {
   overflow-y: overlay;
   min-height: 100vh;
-  width: 100vw;
 }
 
 @media screen and (max-width: 800px) {
   .animeLayout {
     background-image: url("./assets/img/base-img/sieve-anime-background-mobile.webp")!important;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .animeLayout {
+    background-image: url("./assets/img/base-img/sieve-anime-background-mobile.webp")!important;
   }
 }
 

@@ -10,7 +10,7 @@ const classes = {
 
 const Root = styled('div')(({ theme }) => ({
   [`&.${classes.bannerContainer}`]: {
-    width: '100vw',
+    width: '100%',
     height: 'auto',
     position: 'relative',
     padding: 0,
@@ -20,7 +20,7 @@ const Root = styled('div')(({ theme }) => ({
     zIndex: 1,
   },
   [`&.${classes.banner}`]: {
-    width: '100vw',
+    width: '100%',
     height: 'auto',
     objectFit: 'cover'
   },
@@ -29,7 +29,7 @@ const Root = styled('div')(({ theme }) => ({
 const Banner = (childData) => {
   return (
     <Root className={ classes.bannerContainer }>
-      <img src={ childData.childToParent[0] } className={ classes.banner } alt={ childData.childToParent[1] } style={{ width: "100vw"}}/>
+      <img src={ childData.childToParent[0] } className={ classes.banner } alt={ childData.childToParent[1] } style={{ width: "100%"}}/>
     </Root>
   );
 };
